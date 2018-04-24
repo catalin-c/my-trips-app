@@ -11,6 +11,7 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import ro.siit.mytripsapp.entity.Validator.UserCreateFormValidator;
+import ro.siit.mytripsapp.entity.user.CurrentUser;
 import ro.siit.mytripsapp.entity.user.UserCreateForm;
 import ro.siit.mytripsapp.service.user.UserService;
 
@@ -35,12 +36,20 @@ public class UserController {
         binder.addValidators(userCreateFormValidator);
     }
 
+//    @PreAuthorize("@currentUserServiceImpl.canAccessUser(principal, #id)")
+//    @RequestMapping("/user/{id}")
+//    public ModelAndView getUserPage(@PathVariable Long id) {
+//        LOGGER.debug("Getting user page for user={}", id);
+//        return new ModelAndView("user", "user", userService.getUserById(id)
+//                .orElseThrow(() -> new NoSuchElementException(String.format("User=%s not found", id))));
+//    }
+
     @PreAuthorize("@currentUserServiceImpl.canAccessUser(principal, #id)")
-    @RequestMapping("/user/{id}")
-    public ModelAndView getUserPage(@PathVariable Long id) {
-        LOGGER.debug("Getting user page for user={}", id);
-        return new ModelAndView("user", "user", userService.getUserById(id)
-                .orElseThrow(() -> new NoSuchElementException(String.format("User=%s not found", id))));
+    @RequestMapping("/user")
+    public ModelAndView getUserPage(CurrentUser currentUser) {
+        LOGGER.debug("Getting user page for user={}", currentUser.getId());
+        return new ModelAndView("user", "user", userService.getUserById(currentUser.getId())
+                .orElseThrow(() -> new NoSuchElementException(String.format("User=%s not found", currentUser.getId()))));
     }
 
     @PreAuthorize("hasAuthority('ADMIN')")

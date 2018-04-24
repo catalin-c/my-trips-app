@@ -1,11 +1,38 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">-->
+<!--<head>-->
+    <!--<title>Spring Security Example</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>Welcome!</h1>-->
+
+<!--<p>Click <a th:href="@{/hello}">here</a> to see a greeting.</p>-->
+<!--</body>-->
+<!--</html>-->
+
+
+
+
+
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-    <title>Spring Security Example</title>
+    <title>Hello World!</title>
 </head>
 <body>
-<h1>Welcome!</h1>
 
-<p>Click <a th:href="@{/hello}">here</a> to see a greeting.</p>
+<!--<p th:text="text" th:utext="${currentUser.username}">Welcome</p>-->
+<p>Hello <span th:text="${currentUser.username}"></span></p>
+<!--<a th:href="@{/user/${currentUser.id}}">Details</a>-->
+<a th:href="@{/user/} + ${currentUser.id}">Details</a>
+
+<!--<h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>-->
+<form th:action="@{/logout}" method="post">
+    <input type="submit" value="Sign Out"/>
+</form>
 </body>
 </html>
+
+
+
