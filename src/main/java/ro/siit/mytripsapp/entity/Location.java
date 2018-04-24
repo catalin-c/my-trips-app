@@ -3,7 +3,7 @@ package ro.siit.mytripsapp.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "locations")
+@Table(name = "location")
 public class Location {
 
     @Id

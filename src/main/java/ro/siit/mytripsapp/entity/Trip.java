@@ -1,10 +1,12 @@
 package ro.siit.mytripsapp.entity;
 
+import ro.siit.mytripsapp.entity.user.User;
+
 import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "trips")
+@Table(name = "trip")
 public class Trip {
 
     @Id

@@ -34,10 +34,6 @@ dependencies {
 	compile("org.springframework.boot:spring-boot-starter-data-jpa")
 	compile("org.springframework.boot:spring-boot-starter-thymeleaf")
 	compile("org.springframework.boot:spring-boot-starter-web")
-//	compile("org.springframework.boot:spring-boot-starter-security")
-//	compile group: 'com.nulab-inc', name: 'zxcvbn', version: '1.2.5'
-//	compile group: 'org.springframework.boot', name: 'spring-boot-starter-mail', version: '2.0.1.RELEASE'
-//	compile group: 'net.sourceforge.nekohtml', name: 'nekohtml', version: '1.9.22'
-//	compile group: 'org.thymeleaf.extras', name: 'thymeleaf-extras-springsecurity4', version: '3.0.2.RELEASE'
+	compile("org.springframework.boot:spring-boot-starter-security")
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }

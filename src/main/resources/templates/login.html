@@ -4,8 +4,8 @@
 
     <meta charset="UTF-8">
     <title>Login</title>
-    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
-    <link th:href="@{/css/loginstyle.css}" rel="stylesheet"/>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/loginstyle.css}" rel="stylesheet" type="text/css"/>
 
 </head>
 <body>
@@ -37,18 +37,18 @@
     <h1 class="display-4">Hello.</h1>
     <form th:action="@{/login}" method="POST" class="form-signin">
         <div class="form-group">
-            <label for="userName">Username:</label>
-            <input id="userName" class="form-control form-control-lg" placeholder="Username" type="text">
+            <label for="email">Email:</label>
+            <input id="email" name="email" class="form-control form-control-lg" placeholder="Email" type="email">
         </div>
         <div class="form-group">
             <label for="password">Password:</label>
-            <input id="password" class="form-control form-control-lg" placeholder="Password" type="text">
+            <input id="password" name="password" class="form-control form-control-lg" placeholder="Password" type="password">
         </div>
         <div class="form-group">
             <button type="submit" class="btn btn-info btn-lg btn-block">Sign In</button>
         </div>
         <div class="form-group">
-            <button class="btn btn-danger btn-lg btn-block">Sign Up</button>
+            <button href="/register" class="btn btn-danger btn-lg btn-block">Sign Up</button>
         </div>
         <div align="center" th:if="${param.error}">
             <p style="font-size: 20; color: #FF1C19;">Email or Password invalid, please verify</p>
@@ -56,11 +56,38 @@
     </form>
 </div>
 
-
-
+<div th:if="${param.error}">
+    Invalid username and password.
+</div>
+<div th:if="${param.logout}">
+    You have been logged out.
+</div>
 
 <script type="text/javascript" th:src="@{/plugins/jquery-3.3.1.min.js}"></script>
 <script type="text/javascript" th:src="@{/plugins/bootstrap.min.js}" ></script>
 
 </body>
 </html>
+
+<!--####################################################-->
+
+<!--<!DOCTYPE html>-->
+<!--<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"-->
+      <!--xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">-->
+<!--<head>-->
+    <!--<title>Spring Security Example </title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<div th:if="${param.error}">-->
+    <!--Invalid username and password.-->
+<!--</div>-->
+<!--<div th:if="${param.logout}">-->
+    <!--You have been logged out.-->
+<!--</div>-->
+<!--<form th:action="@{/login}" method="post">-->
+    <!--<div><label> User Name : <input type="text" name="username"/> </label></div>-->
+    <!--<div><label> Password: <input type="password" name="password"/> </label></div>-->
+    <!--<div><input type="submit" value="Sign In"/></div>-->
+<!--</form>-->
+<!--</body>-->
+<!--</html>-->
