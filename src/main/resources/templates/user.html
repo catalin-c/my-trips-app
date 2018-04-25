@@ -1,18 +1,144 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Hello World!</title>
+
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
+    <!--<link th:href="@{/css/loginstyle.css}" rel="stylesheet" type="text/css"/>-->
+    <link th:href="@{/css/userstyle.css}" rel="stylesheet" type="text/css"/>
+
 </head>
 <body>
 
-<!--<p th:text="text" th:utext="${currentUser.username}">Welcome</p>-->
-<p>Hello <span th:text="${user.firstName}"></span></p>
-<p>Test</p>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
-<!--<h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>-->
-<form th:action="@{/logout}" method="post">
-    <input type="submit" value="Sign Out"/>
-</form>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Trips <span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-md-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/profile">Profile</a>
+            </li>
+            <li class="nav-item">
+                <!--<a class="nav-link" href="#">Logout </a>-->
+                <form th:action="@{/logout}" method="post">
+                    <input class="nav-link" id="logout" type="submit" value="Sign Out"/>
+                </form>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="row userrow" id="firstrow">
+        <div class="col-md-6">
+            <div id="tripsdropdown" class="dropdown">
+                <label for="dropdownMenuButton">Trip: </label>
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Dropdown button Test Trip Length
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+            </div>
+        </div>
+        <!--<div class="col-md-3">-->
+            <!--<p>13 Apr 2018 - 20 Apr 2019</p>-->
+        <!--</div>-->
+
+        <div class="cold-md-2">
+            <button type="button" class="btn btn-success trip-btn">Edit</button>
+        </div>
+        <div class="cold-md-2">
+            <button type="button" class="btn btn-primary trip-btn">Add</button>
+        </div>
+        <div class="cold-md-2">
+            <button type="button" class="btn btn-danger trip-btn">Delete</button>
+        </div>
+    </div>
+
+
+    <div class="row userrow">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label for="exampleTextarea">Impressions</label>
+                <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <div class="row userrow">
+        <div class="col-md-4">
+            <img th:src="@{/images/test.jpg}" class="img-thumbnail"/>
+            <h3>Titlu</h3>
+            <p>La la la la la la la la la la la la la la la la la la la la l</p>
+        </div>
+        <div class="col-md-4">
+            <img th:src="@{/images/test.jpg}" class="img-thumbnail"/>
+            <h3>Titlu</h3>
+            <p>La la la la la la la la la la la la la la la la la la la la l</p>
+        </div>
+
+
+        <div class="col-md-4">
+            <img th:src="@{/images/test.jpg}" class="img-thumbnail" />
+            <h4>Dates</h4>
+            <p>13 Apr 2018 - 20 Apr 2018</p>
+
+        </div>
+    </div>
+    
+    
+</div>
+
+
+<!--<form th:action="@{/logout}" method="post">-->
+<!--<input type="submit" value="Sign Out"/>-->
+
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>-->
+<script type="text/javascript" th:src="@{/plugins/popper.min.js}"></script>
+<script type="text/javascript" th:src="@{/plugins/jquery-3.3.1.min.js}"></script>
+<script type="text/javascript" th:src="@{/plugins/bootstrap.min.js}" ></script>
+
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<!DOCTYPE html>-->
+<!--<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"-->
+      <!--xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">-->
+<!--<head>-->
+    <!--<title>Hello World!</title>-->
+<!--</head>-->
+<!--<body>-->
+
+<!--&lt;!&ndash;<p th:text="text" th:utext="${currentUser.username}">Welcome</p>&ndash;&gt;-->
+<!--<p>Hello <span th:text="${user.firstName}"></span></p>-->
+<!--<p>Test</p>-->
+
+<!--&lt;!&ndash;<h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>&ndash;&gt;-->
+<!--<form th:action="@{/logout}" method="post">-->
+    <!--<input type="submit" value="Sign Out"/>-->
+<!--</form>-->
+<!--</body>-->
+<!--</html>-->
