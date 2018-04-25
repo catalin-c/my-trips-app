@@ -23,14 +23,14 @@ public class HomeController {
     private static final Logger LOGGER = LoggerFactory.getLogger(HomeController.class);
 
 
-    @RequestMapping("/")
-    public String getHomePage(CurrentUser user) {
-
-        LOGGER.info(String.valueOf(user.getId()));
-
-        LOGGER.debug("Getting home page");
-
-        return "user";
-    }
+//    @RequestMapping("/")
+//    public String getHomePage(CurrentUser user) {
+//
+//        LOGGER.info(String.valueOf(user.getId()));
+//
+//        LOGGER.debug("Getting home page");
+//
+//        return "user";
+//    }
 
 }

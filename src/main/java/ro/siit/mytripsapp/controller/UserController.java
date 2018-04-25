@@ -45,10 +45,26 @@ public class UserController {
 //    }
 
     @PreAuthorize("@currentUserServiceImpl.canAccessUser(principal, #id)")
+    @RequestMapping("/")
+    public ModelAndView getHomeUserPage(CurrentUser currentUser) {
+        LOGGER.debug("Getting user page for user={}", currentUser.getId());
+        return new ModelAndView("user", "user", userService.getUserById(currentUser.getId())
+                .orElseThrow(() -> new NoSuchElementException(String.format("User=%s not found", currentUser.getId()))));
+    }
+
+    @PreAuthorize("@currentUserServiceImpl.canAccessUser(principal, #id)")
     @RequestMapping("/user")
     public ModelAndView getUserPage(CurrentUser currentUser) {
         LOGGER.debug("Getting user page for user={}", currentUser.getId());
         return new ModelAndView("user", "user", userService.getUserById(currentUser.getId())
+                .orElseThrow(() -> new NoSuchElementException(String.format("User=%s not found", currentUser.getId()))));
+    }
+
+    @PreAuthorize("@currentUserServiceImpl.canAccessUser(principal, #id)")
+    @RequestMapping("/profile")
+    public ModelAndView getProfilePage(CurrentUser currentUser) {
+        LOGGER.debug("Getting user page for user={}", currentUser.getId());
+        return new ModelAndView("profile", "user", userService.getUserById(currentUser.getId())
                 .orElseThrow(() -> new NoSuchElementException(String.format("User=%s not found", currentUser.getId()))));
     }
 

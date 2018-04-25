@@ -65,9 +65,9 @@ public class SimpleAuthenticationSuccessHandler
         }
 
         if (isUser) {
-            return "/user";
+            return "/";
         } else if (isAdmin) {
-            return "/user";
+            return "/";
         } else {
             throw new IllegalStateException();
         }

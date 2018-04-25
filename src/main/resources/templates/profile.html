@@ -38,31 +38,32 @@
     <form th:action="@{/profile}" method="POST" class="form-signin">
         <div class="form-group">
             <label for="firstName">First Name</label>
-            <input id="firstName" class="form-control" placeholder="First Name.." type="text">
+            <input id="firstName" class="form-control" th:placeholder="${user.firstName}" type="text">
+            <!--<input id="firstName" class="form-control" placeholder="First Name.." type="text">-->
         </div>
         <div class="form-group">
             <label for="lastName">Last Name</label>
-            <input id="lastName" class="form-control" placeholder="Last Name.." type="text">
+            <input id="lastName" class="form-control" th:placeholder="${user.lastName}" type="text">
         </div>
         <div class="form-group">
-            <label for="userName">Username</label>
-            <input id="userName" class="form-control" placeholder="User Name.." type="text">
+            <label for="email">Email</label>
+            <input id="email" class="form-control" th:placeholder="${user.email}" type="text">
         </div>
         <div class="form-group">
             <label for="password">Password:</label>
-            <input id="password" class="form-control" placeholder="Password.." type="password">
+            <input id="password" class="form-control" placeholder="Enter New Password.." type="password">
         </div>
         <div class="form-group">
             <label for="city">City</label>
-            <input id="city" class="form-control" placeholder="City.." type="text">
+            <input id="city" class="form-control" th:placeholder="${user.city}" type="text">
         </div>
         <div class="form-group">
             <label for="address">Address</label>
-            <input id="address" class="form-control" placeholder="Address.." type="text">
+            <input id="address" class="form-control" th:placeholder="${user.address}" type="text">
         </div>
         <div class="form-group">
             <label for="phone">Phone</label>
-            <input id="phone" class="form-control" placeholder="Phone.." type="text">
+            <input id="phone" class="form-control" th:placeholder="${user.phone}" type="text">
         </div>
         <div class="form-group">
             <button type="submit" class="btn btn-info btn-lg btn-block">Edit Profile</button>
