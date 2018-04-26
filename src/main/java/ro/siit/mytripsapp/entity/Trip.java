@@ -3,7 +3,11 @@ package ro.siit.mytripsapp.entity;
 import ro.siit.mytripsapp.entity.user.User;
 
 import javax.persistence.*;
+
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+
 
 @Entity
 @Table(name = "trip")
@@ -17,17 +21,24 @@ public class Trip {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
+    @Column(name="trip_name")
     private String tripName;
 
     @Temporal(TemporalType.DATE)
+    @Column(name="date_from")
     private Date dateFrom;
 
     @Temporal(TemporalType.DATE)
+    @Column(name="date_to")
     private Date dateTo;
 
+    @Column(name="impression")
     private String impression;
-    private String photoOne;
-    private String photoTwo;
+
+    @OneToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            mappedBy = "trip")
+    private Set<Photo> photos = new HashSet<>();
 
     @OneToOne(fetch = FetchType.LAZY,
             cascade =  CascadeType.ALL,
@@ -36,14 +47,24 @@ public class Trip {
 
     protected Trip() {}
 
-    public Trip(String tripName, Date dateFrom, Date dateTo, String impression, String photoOne, String photoTwo) {
+    public Trip(String tripName, Date dateFrom, Date dateTo, String impression) {
         this.tripName = tripName;
         this.dateFrom = dateFrom;
         this.dateTo = dateTo;
         this.impression = impression;
-        this.photoOne = photoOne;
-        this.photoTwo = photoTwo;
     }
+
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Trip))
+            return false;
+        if (obj == this)
+            return true;
+        return this.tripName.equals(((Trip) obj).tripName);
+    }
+
+//    public int hashCode(){
+//        return tripName.length();//for simplicity reason
+//    }
 
     public Long getId() {
         return id;
@@ -93,20 +114,12 @@ public class Trip {
         this.impression = impression;
     }
 
-    public String getPhotoOne() {
-        return photoOne;
+    public Set<Photo> getPhotos() {
+        return photos;
     }
 
-    public void setPhotoOne(String photoOne) {
-        this.photoOne = photoOne;
-    }
-
-    public String getPhotoTwo() {
-        return photoTwo;
-    }
-
-    public void setPhotoTwo(String photoTwo) {
-        this.photoTwo = photoTwo;
+    public void setPhotos(Set<Photo> photos) {
+        this.photos = photos;
     }
 
     public Location getLocation() {

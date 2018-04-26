@@ -9,7 +9,11 @@ public class Location {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @Column(name="latitude")
     private String latitude;
+
+    @Column(name="longitude")
     private String longitude;
 
     @OneToOne(fetch = FetchType.LAZY)

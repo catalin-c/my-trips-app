@@ -14,7 +14,7 @@ import java.util.Set;
 public class User {
 
     @Id
-    @Column(name = "id", nullable = false, updatable = false)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(name = "password_hash", nullable = false)

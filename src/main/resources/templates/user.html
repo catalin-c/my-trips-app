@@ -3,7 +3,7 @@
 <head>
 
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title>My Trips</title>
     <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
     <!--<link th:href="@{/css/loginstyle.css}" rel="stylesheet" type="text/css"/>-->
     <link th:href="@{/css/userstyle.css}" rel="stylesheet" type="text/css"/>
@@ -41,15 +41,24 @@
     <div class="row userrow" id="firstrow">
         <div class="col-md-6">
             <div id="tripsdropdown" class="dropdown">
-                <label for="dropdownMenuButton">Trip: </label>
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Dropdown button Test Trip Length
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
+                <label for="tripSelect">Trip: </label>
+                <div class="form-group blu-margin">
+                    <select class="form-control" th:field="${user}"  id="tripSelect">
+                        <!--<option value="0" th:text="Select Trip" ></option>-->
+                        <option th:each="tripName : ${user.getTrips().toArray()}" th:value="${tripName.getTripName()}" th:text="${tripName.getTripName()}"></option>
+                    </select>
                 </div>
+
+                <!--<div class="form-group blu-margin">-->
+                    <!--<select class="form-control" th:object="${trip}" th:field="${user}"  id="dropdownMenuButton">-->
+                        <!--&lt;!&ndash;<option value="0" th:text="Select Trip" ></option>&ndash;&gt;-->
+                        <!--<option th:each="trip : ${user.getTrips().toArray()}" th:value="${trip}" th:text="${trip.getTripName()}"></option>-->
+                    <!--</select>-->
+                <!--</div>-->
+
+
+
+
             </div>
         </div>
         <!--<div class="col-md-3">-->
@@ -71,8 +80,11 @@
     <div class="row userrow">
         <div class="col-md-12">
             <div class="form-group">
-                <label for="exampleTextarea">Impressions</label>
-                <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+                <label for="exampleTextarea">Impressions:</label>
+                <!--<textarea class="form-control" id="exampleTextarea" rows="3" readonly="readonly">Textarea impression-->
+                <!--</textarea>-->
+                <!--<p id="exampleTextarea">Test Impression</p>-->
+                <p id="exampleTextarea"><span th:text="${user.getTrips().toArray()[0].getImpression()}"></span></p>
             </div>
         </div>
     </div>
@@ -109,6 +121,7 @@
 <script type="text/javascript" th:src="@{/plugins/popper.min.js}"></script>
 <script type="text/javascript" th:src="@{/plugins/jquery-3.3.1.min.js}"></script>
 <script type="text/javascript" th:src="@{/plugins/bootstrap.min.js}" ></script>
+<script type="text/javascript" th:src="@{/plugins/ajaxreq.js}" ></script>
 
 </body>
 </html>

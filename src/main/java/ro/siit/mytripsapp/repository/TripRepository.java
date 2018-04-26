@@ -7,5 +7,5 @@ import ro.siit.mytripsapp.entity.Trip;
 
 @Repository
 public interface TripRepository extends CrudRepository<Trip, Long> {
-
+    public Trip findByTripName(String tripName);
 }
