@@ -1,6 +1,9 @@
 package ro.siit.mytripsapp.model;
 
+import ro.siit.mytripsapp.entity.Photo;
+
 import java.util.Date;
+
 
 public class TripModel {
 
@@ -9,6 +12,7 @@ public class TripModel {
     private Date dateFrom;
     private Date dateTo;
     private String impression;
+
 
     public Long getId() {
         return id;
@@ -49,4 +53,5 @@ public class TripModel {
     public void setImpression(String impression) {
         this.impression = impression;
     }
+
 }

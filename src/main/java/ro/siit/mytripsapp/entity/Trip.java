@@ -35,10 +35,10 @@ public class Trip {
     @Column(name="impression")
     private String impression;
 
-    @OneToMany(cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY,
-            mappedBy = "trip")
-    private Set<Photo> photos = new HashSet<>();
+//    @OneToMany(cascade = CascadeType.ALL,
+//            fetch = FetchType.LAZY,
+//            mappedBy = "trip")
+//    private Set<Photo> photos = new HashSet<>();
 
     @OneToOne(fetch = FetchType.LAZY,
             cascade =  CascadeType.ALL,
@@ -114,13 +114,13 @@ public class Trip {
         this.impression = impression;
     }
 
-    public Set<Photo> getPhotos() {
-        return photos;
-    }
-
-    public void setPhotos(Set<Photo> photos) {
-        this.photos = photos;
-    }
+//    public Set<Photo> getPhotos() {
+//        return photos;
+//    }
+//
+//    public void setPhotos(Set<Photo> photos) {
+//        this.photos = photos;
+//    }
 
     public Location getLocation() {
         return location;
