@@ -80,11 +80,9 @@
     <div class="row userrow">
         <div class="col-md-12">
             <div class="form-group">
-                <label for="exampleTextarea">Impressions:</label>
-                <!--<textarea class="form-control" id="exampleTextarea" rows="3" readonly="readonly">Textarea impression-->
-                <!--</textarea>-->
-                <!--<p id="exampleTextarea">Test Impression</p>-->
-                <p id="exampleTextarea"><span th:text="${user.getTrips().toArray()[0].getImpression()}"></span></p>
+                <label for="impressionsText">Impressions:</label>
+                <!--<p id="exampleTextarea"><span th:text="${user.getTrips().toArray()[0].getImpression()}"></span></p>-->
+                <p id="impressionsText"></p>
             </div>
         </div>
     </div>
@@ -105,7 +103,7 @@
         <div class="col-md-4">
             <img th:src="@{/images/test.jpg}" class="img-thumbnail" />
             <h4>Dates</h4>
-            <p>13 Apr 2018 - 20 Apr 2018</p>
+            <p id="datesText">13 Apr 2018 - 20 Apr 2018</p>
 
         </div>
     </div>
