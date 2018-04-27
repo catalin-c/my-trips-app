@@ -65,7 +65,17 @@ $( document ).ready(function() {
     $( "#deleteTrip" ).click(function() {
         var answer = confirm("Are you sure you want to delete " + $("#tripSelect :selected").text() + "?");
         if (answer) {
+            console.log("YESSSSSSSSS");
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:7070/delete/trip/" + currentTripId,
+                success: function () {
+                    location.reload(true);
+                },
+                error: function () {
 
+                }
+            });
         }else{
             //confirm false code
         }

@@ -1,6 +1,7 @@
 package ro.siit.mytripsapp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;
 import ro.siit.mytripsapp.entity.Trip;
 import ro.siit.mytripsapp.model.TripModel;
@@ -11,6 +12,9 @@ public class TripController {
 
     @Autowired
     private TripRepository tripRepository;
+
+    @Autowired
+    JdbcTemplate jdbcTemplate;
 
     private static TripModel mapToModel(Trip entity) {
         TripModel to = new TripModel();
@@ -28,5 +32,15 @@ public class TripController {
     public @ResponseBody TripModel getTrip(@RequestParam String tripName)
     {
         return mapToModel(tripRepository.findByTripName(tripName));
+    }
+
+
+    @PutMapping("/delete/trip/{id}")
+    public void solveNeed(@PathVariable(value = "id") Long id) {
+        jdbcTemplate.update(
+                "DELETE FROM mytripapp.trip WHERE id = ?",
+                id
+
+        );
     }
 }
