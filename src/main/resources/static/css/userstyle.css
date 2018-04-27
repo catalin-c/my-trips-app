@@ -49,3 +49,8 @@
         /*max-width: 1100px;*/
     /*}*/
 /*}*/
+
+#map {
+    height: 300px;
+    width: 300px;
+}

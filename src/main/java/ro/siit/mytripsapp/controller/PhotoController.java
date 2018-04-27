@@ -18,16 +18,6 @@ public class PhotoController {
     @Autowired
     private PhotoRepository photoRepository;
 
-//    private static PhotoModel mapToModel(Photo entity) {
-//        PhotoModel to = new TripModel();
-//        to.setId(entity.getId());
-//        to.setTripName(entity.getTripName());
-//        to.setImpression(entity.getImpression());
-//        to.setDateFrom(entity.getDateFrom());
-//        to.setDateTo(entity.getDateTo());
-//        return to;
-//    }
-
     private static PhotoModel mapToModel(Photo entity) {
         PhotoModel to = new PhotoModel();
         to.setId(entity.getId());

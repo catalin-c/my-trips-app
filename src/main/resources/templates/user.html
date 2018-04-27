@@ -48,31 +48,20 @@
                         <option th:each="tripName : ${user.getTrips().toArray()}" th:value="${tripName.getTripName()}" th:text="${tripName.getTripName()}"></option>
                     </select>
                 </div>
-
-                <!--<div class="form-group blu-margin">-->
-                    <!--<select class="form-control" th:object="${trip}" th:field="${user}"  id="dropdownMenuButton">-->
-                        <!--&lt;!&ndash;<option value="0" th:text="Select Trip" ></option>&ndash;&gt;-->
-                        <!--<option th:each="trip : ${user.getTrips().toArray()}" th:value="${trip}" th:text="${trip.getTripName()}"></option>-->
-                    <!--</select>-->
-                <!--</div>-->
-
-
-
-
             </div>
         </div>
-        <!--<div class="col-md-3">-->
-            <!--<p>13 Apr 2018 - 20 Apr 2019</p>-->
-        <!--</div>-->
 
         <div class="cold-md-2">
-            <button type="button" class="btn btn-success trip-btn">Edit</button>
+            <button type="button" class="btn btn-secondary trip-btn">Add Photo</button>
         </div>
         <div class="cold-md-2">
-            <button type="button" class="btn btn-primary trip-btn">Add</button>
+            <button type="button" class="btn btn-success trip-btn">Edit Trip</button>
         </div>
         <div class="cold-md-2">
-            <button type="button" class="btn btn-danger trip-btn">Delete</button>
+            <button type="button" class="btn btn-primary trip-btn">Add Trip</button>
+        </div>
+        <div class="cold-md-2">
+            <button type="button" class="btn btn-danger trip-btn" id="deleteTrip">Delete Trip</button>
         </div>
     </div>
 
@@ -88,19 +77,16 @@
     </div>
 
     <div class="row userrow">
-        <div class="col-md-4" id="googleMap">
-            <img th:src="@{/images/test.jpg}" class="img-thumbnail" />
-            <h4>Dates</h4>
-            <p id="datesText">13 Apr 2018 - 20 Apr 2018</p>
+        <!--<div class="col-md-4" id="googleMap">-->
+            <!--<img th:src="@{/images/test.jpg}" class="img-thumbnail" />-->
+            <!--<h4>Dates</h4>-->
+            <!--<p id="datesText">13 Apr 2018 - 20 Apr 2018</p>-->
+        <!--</div>-->
+        <div class="col-md-4">
+            <div  id="map"></div>
+            <p id="datesText"></p>
         </div>
-        <!--<div class="col-md-4">-->
-            <!--<img src="https://i.imgur.com/Z4E0bj7.jpg" alt="" class="img-thumbnail">-->
-            <!--<h3>Titlu</h3>-->
-        <!--</div>-->
-        <!--<div class="col-md-4">-->
-            <!--<img th:src="@{/images/test.jpg}" class="img-thumbnail"/>-->
-            <!--<h3>Titlu</h3>-->
-        <!--</div>-->
+
     </div>
 
     <!--<p id="exampleTextarea"><span th:text="${user.getTrips().toArray()[0].getImpression()}"></span></p>-->
@@ -112,11 +98,12 @@
 <!--<form th:action="@{/logout}" method="post">-->
 <!--<input type="submit" value="Sign Out"/>-->
 
-<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>-->
+<script type="text/javascript" th:src="@{/plugins/googlemap.js}"></script>
 <script type="text/javascript" th:src="@{/plugins/popper.min.js}"></script>
 <script type="text/javascript" th:src="@{/plugins/jquery-3.3.1.min.js}"></script>
 <script type="text/javascript" th:src="@{/plugins/bootstrap.min.js}" ></script>
 <script type="text/javascript" th:src="@{/plugins/ajaxreq.js}" ></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDL3OcNBWkphg7AdM5AZEPN-MU8c2r68Nw&callback=initMap" async defer></script>
 
 </body>
 </html>
