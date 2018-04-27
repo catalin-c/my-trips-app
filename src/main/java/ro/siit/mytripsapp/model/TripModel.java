@@ -12,6 +12,8 @@ public class TripModel {
     private Date dateFrom;
     private Date dateTo;
     private String impression;
+    private String latitude;
+    private String longitude;
 
 
     public Long getId() {
@@ -54,4 +56,19 @@ public class TripModel {
         this.impression = impression;
     }
 
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
+    }
 }

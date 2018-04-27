@@ -35,6 +35,12 @@ public class Trip {
     @Column(name="impression")
     private String impression;
 
+    @Column(name="latitude")
+    private String latitude;
+
+    @Column(name="longitude")
+    private String longitude;
+
 //    @OneToMany(cascade = CascadeType.ALL,
 //            fetch = FetchType.LAZY,
 //            mappedBy = "trip")
@@ -128,5 +134,21 @@ public class Trip {
 
     public void setLocation(Location location) {
         this.location = location;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
     }
 }

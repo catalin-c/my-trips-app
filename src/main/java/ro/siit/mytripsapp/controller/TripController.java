@@ -19,6 +19,8 @@ public class TripController {
         to.setImpression(entity.getImpression());
         to.setDateFrom(entity.getDateFrom());
         to.setDateTo(entity.getDateTo());
+        to.setLatitude(entity.getLatitude());
+        to.setLongitude(entity.getLongitude());
         return to;
     }
 

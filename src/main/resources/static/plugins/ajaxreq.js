@@ -2,6 +2,8 @@ $( document ).ready(function() {
 
     var currentTripName = encodeURIComponent($("#tripSelect :selected").text().trim());
     var currentTripId = 0;
+    // var latitude = "";
+    // var longitude = "";
 
     // Populate trip selector + impressions + dates
     function populatePageFirstPart(sParameter) {
@@ -11,7 +13,11 @@ $( document ).ready(function() {
                 $("#impressionsText").text(result['impression']);
                 $("#datesText").text("From: " + result['dateFrom'] + " to " + result['dateTo']);
                 currentTripId = result['id'];
+                map.setCenter(new google.maps.LatLng(result['latitude'], result['longitude']));
                 populatePageSecondPart(result['id']);
+                // latitude = result['latitude'];
+                // longitude = result['longitude'];
+
             },
 
             error: function (request) {
@@ -45,8 +51,10 @@ $( document ).ready(function() {
     $('#tripSelect').on('change', function() {
 
         var parameter = encodeURIComponent(this.value.trim());
+
         $(".photoImage").remove()
         populatePageFirstPart(parameter);
+        // map.setCenter(new google.maps.LatLng(44.439663, 26.096306));
     });
 
 
