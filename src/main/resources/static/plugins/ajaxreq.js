@@ -33,7 +33,7 @@ $( document ).ready(function() {
             type: "get", url: "http://localhost:7070/photos?tripId=" + tripId,
             success: function(resultTwo){
                 for (var i = 0; i < resultTwo.length; i++) {
-                    $( '<div class="col-md-4 photoImage"> <img src="' + resultTwo[i]['photoLink'] + '" alt="photo" class="img-thumbnail"> <h3>' + resultTwo[i]['title'] + '</h3></div>' ).insertAfter( "#googleMap" );
+                    $( '<div class="col-md-4 photoImage"> <img src="' + resultTwo[i]['photoLink'] + '" alt="photo" class="img-thumbnail"> <h3>' + resultTwo[i]['title'] + '</h3></div>' ).insertAfter( ".googleMap" );
                 }
             },
 
