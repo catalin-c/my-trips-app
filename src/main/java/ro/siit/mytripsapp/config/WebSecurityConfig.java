@@ -36,6 +36,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         String[] staticContent = {"/css/**", "/plugins/**", "/images/**"};
 
+        http.csrf().disable();
+
         http.authorizeRequests()
                 .antMatchers(staticContent).permitAll()
                 .antMatchers( "/public/**").permitAll()

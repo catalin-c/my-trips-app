@@ -35,12 +35,15 @@ public class TripController {
     }
 
 
-    @PutMapping("/delete/trip/{id}")
+    @PostMapping("/delete/trip/{id}")
     public void solveNeed(@PathVariable(value = "id") Long id) {
+        jdbcTemplate.update(
+                "DELETE FROM mytripapp.photo WHERE trip_id = ?",
+                id
+        );
         jdbcTemplate.update(
                 "DELETE FROM mytripapp.trip WHERE id = ?",
                 id
-
         );
     }
 }
