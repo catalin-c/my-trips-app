@@ -8,6 +8,7 @@ import ro.siit.mytripsapp.model.PhotoModel;
 import ro.siit.mytripsapp.model.TripModel;
 import ro.siit.mytripsapp.repository.PhotoRepository;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -33,5 +34,10 @@ public class PhotoController {
         List<PhotoModel> photos = new ArrayList<>();
         photos.addAll(photoRepository.findAllByTripId(tripId).stream().map(PhotoController::mapToModel).collect(Collectors.toList()));
         return photos;
+    }
+
+    @PostMapping("/addPhoto")
+    public Photo createNote(@Valid @RequestBody Photo photo) {
+        return photoRepository.save(photo);
     }
 }

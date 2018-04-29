@@ -2,8 +2,6 @@ $( document ).ready(function() {
 
     var currentTripName = encodeURIComponent($("#tripSelect :selected").text().trim());
     var currentTripId = 0;
-    // var latitude = "";
-    // var longitude = "";
 
     // Populate trip selector + impressions + dates
     function populatePageFirstPart(sParameter) {
@@ -15,8 +13,6 @@ $( document ).ready(function() {
                 currentTripId = result['id'];
                 map.setCenter(new google.maps.LatLng(result['latitude'], result['longitude']));
                 populatePageSecondPart(result['id']);
-                // latitude = result['latitude'];
-                // longitude = result['longitude'];
 
             },
 
@@ -73,13 +69,6 @@ $( document ).ready(function() {
             });
         }
     });
-    //
-    // $("#addPhoto").click(function () {
-    //     // $("#test").load("http://localhost:7070/profile").dialog({modal:true});
-    // });
-
-
-
 
 
     //Add Photo Form
@@ -92,11 +81,28 @@ $( document ).ready(function() {
 
     $("#send").click(function() {
         var photoName = $("#photoName").val();
-        var photoLink = $("#email").val();
+        var photoLink = $("#photoLink").val();
         if (photoName == "" || photoLink == ""){
             alert("Please fill all the fields!");
         }else{
             $("#addPhotoDiv").css("display", "none");
+            var photoDetails = {"title": photoName, "photoLink": photoLink, "tripId":currentTripId};
+
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:7070/addPhoto",
+                // The key needs to match your method's input parameter (case-sensitive).
+                data: JSON.stringify(photoDetails),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function(data){
+                    location.reload(true);;
+
+                },
+                failure: function(errMsg) {
+                    alert(errMsg);
+                }
+            });
         }
     });
 
