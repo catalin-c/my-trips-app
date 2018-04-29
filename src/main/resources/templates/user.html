@@ -52,7 +52,7 @@
         </div>
 
         <div class="cold-md-2">
-            <button type="button" class="btn btn-secondary trip-btn">Add Photo</button>
+            <button type="button" class="btn btn-secondary trip-btn" id="addPhoto">Add Photo</button>
         </div>
         <div class="cold-md-2">
             <button type="button" class="btn btn-success trip-btn">Edit Trip</button>
@@ -77,11 +77,6 @@
     </div>
 
     <div class="row userrow">
-        <!--<div class="col-md-4" id="googleMap">-->
-            <!--<img th:src="@{/images/test.jpg}" class="img-thumbnail" />-->
-            <!--<h4>Dates</h4>-->
-            <!--<p id="datesText">13 Apr 2018 - 20 Apr 2018</p>-->
-        <!--</div>-->
         <div class="col-md-4 googleMap">
             <div  id="map"></div>
             <p id="datesText"></p>
@@ -95,9 +90,31 @@
 </div>
 
 
+<div id="addPhotoDiv">
+    <form class="form" action="#" id="addPhotoForm">
+
+        <h3 class="formTitle">Add Trip Photo</h3>
+        <hr/><br/>
+        <label>Photo Name: <span>*</span></label>
+        <br/>
+        <input type="text" class="formInput" id="photoName" placeholder="Photo Name"/><br/>
+        <br/>
+        <label>Photo Link: <span>*</span></label>
+        <br/>
+        <input type="text" class="formInput" id="photoLink" placeholder="Photo Link"/><br/>
+        <br/>
+
+        <input type="button" class="formInput" id="send" value="Send"/>
+        <input type="button" class="formInput" id="cancel" value="Cancel"/>
+        <br/>
+    </form>
+</div>
+
+
+
+
 <!--<form th:action="@{/logout}" method="post">-->
 <!--<input type="submit" value="Sign Out"/>-->
-
 <script type="text/javascript" th:src="@{/plugins/googlemap.js}"></script>
 <script type="text/javascript" th:src="@{/plugins/popper.min.js}"></script>
 <script type="text/javascript" th:src="@{/plugins/jquery-3.3.1.min.js}"></script>
