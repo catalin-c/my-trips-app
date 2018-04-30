@@ -9,6 +9,7 @@ public class TripModel {
 
     private Long id;
     private String tripName;
+    private Long userId;
     private Date dateFrom;
     private Date dateTo;
     private String impression;
@@ -30,6 +31,14 @@ public class TripModel {
 
     public void setTripName(String tripName) {
         this.tripName = tripName;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public Date getDateFrom() {

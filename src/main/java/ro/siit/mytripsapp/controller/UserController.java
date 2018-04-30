@@ -36,14 +36,6 @@ public class UserController {
         binder.addValidators(userCreateFormValidator);
     }
 
-//    @PreAuthorize("@currentUserServiceImpl.canAccessUser(principal, #id)")
-//    @RequestMapping("/user/{id}")
-//    public ModelAndView getUserPage(@PathVariable Long id) {
-//        LOGGER.debug("Getting user page for user={}", id);
-//        return new ModelAndView("user", "user", userService.getUserById(id)
-//                .orElseThrow(() -> new NoSuchElementException(String.format("User=%s not found", id))));
-//    }
-
     @PreAuthorize("@currentUserServiceImpl.canAccessUser(principal, #id)")
     @RequestMapping("/")
     public ModelAndView getHomeUserPage(CurrentUser currentUser) {

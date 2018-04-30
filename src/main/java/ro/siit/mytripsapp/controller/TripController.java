@@ -7,6 +7,8 @@ import ro.siit.mytripsapp.entity.Trip;
 import ro.siit.mytripsapp.model.TripModel;
 import ro.siit.mytripsapp.repository.TripRepository;
 
+import javax.validation.Valid;
+
 @RestController
 public class TripController {
 
@@ -36,7 +38,7 @@ public class TripController {
 
 
     @PostMapping("/delete/trip/{id}")
-    public void solveNeed(@PathVariable(value = "id") Long id) {
+    public void deleteTrip(@PathVariable(value = "id") Long id) {
         jdbcTemplate.update(
                 "DELETE FROM mytripapp.photo WHERE trip_id = ?",
                 id
@@ -46,4 +48,16 @@ public class TripController {
                 id
         );
     }
+
+
+    @PostMapping("/addTrip")
+    public Trip addPhoto(@Valid @RequestBody Trip trip) {
+        return tripRepository.save(trip);
+    }
+
+//    @GetMapping("/getTrips/{id}")
+//    public Note getNoteById(@PathVariable(value = "id") Long noteId) {
+//        return noteRepository.findById(noteId)
+//                .orElseThrow(() -> new ResourceNotFoundException("Note", "id", noteId));
+//    }
 }

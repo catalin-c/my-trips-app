@@ -75,11 +75,11 @@ $( document ).ready(function() {
     $("#addPhoto").click(function() {
         $("#addPhotoDiv").css("display", "block");
     });
-    $("#addPhotoForm #cancel").click(function() {
+    $("#addPhotoForm #cancelPhoto").click(function() {
         $(this).parent().parent().hide();
     });
 
-    $("#send").click(function() {
+    $("#sendPhoto").click(function() {
         var photoName = $("#photoName").val();
         var photoLink = $("#photoLink").val();
         if (photoName == "" || photoLink == ""){
@@ -97,7 +97,71 @@ $( document ).ready(function() {
                 dataType: "json",
                 success: function(data){
                     location.reload(true);;
+                },
+                failure: function(errMsg) {
+                    alert("The photo can't be added.");
+                }
+            });
+        }
+    });
 
+    //Add trip date pickers
+    $( "#datePickerFrom" ).datepicker();
+    $( "#datePickerTo" ).datepicker();
+
+
+//Add Trip Form
+    $("#addTrip").click(function() {
+        $("#addTripDiv").css("display", "block");
+    });
+    $("#addTripForm #cancelTrip").click(function() {
+        $(this).parent().parent().hide();
+    });
+
+    $("#sendTrip").click(function() {
+        var userId = $("#currentUserId").val();
+        var tripName = $("#tripName").val();
+        var datePickerFrom = $("#datePickerFrom").val();
+        var datePickerTo = $("#datePickerTo").val();
+        var tripImpressions = $("#tripImpressions").val();
+        var countryName = $("#countryName").val();
+        var cityName = $("#cityName").val();
+        if (tripName == "" || datePickerFrom == "" || datePickerTo == "" || tripImpressions == "" || countryName == "" || cityName == ""){
+            alert("Please fill all the fields!");
+        }else{
+            $("#addTripDiv").css("display", "none");
+            var tripDetails = {"userId": userId,"tripName": tripName, "dateFrom": datePickerFrom, "dateTo": datePickerTo,
+            "impression": tripImpressions};
+
+            //Request google coordinates
+            $.ajax({
+                type: "get", url: "https://maps.googleapis.com/maps/api/geocode/json?address=" + cityName + "+" + countryName +
+                "&key=AIzaSyDL3OcNBWkphg7AdM5AZEPN-MU8c2r68Nw",
+                success: function(result){
+                    $("#impressionsText").text(result['impression']);
+                    $("#datesText").text("From: " + result['dateFrom'] + " to " + result['dateTo']);
+                    currentTripId = result['id'];
+                    map.setCenter(new google.maps.LatLng(result['latitude'], result['longitude']));
+                    populatePageSecondPart(result['id']);
+
+                },
+
+                error: function (request) {
+                    $("#impressionsText").text("Error loading impressions");
+                    $("#datesText").text("Error loading dates");
+                }
+            });
+
+
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:7070/addPhoto",
+                // The key needs to match your method's input parameter (case-sensitive).
+                data: JSON.stringify(tripDetails),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function(data){
+                    location.reload(true);;
                 },
                 failure: function(errMsg) {
                     alert(errMsg);
@@ -105,5 +169,6 @@ $( document ).ready(function() {
             });
         }
     });
+
 
 });

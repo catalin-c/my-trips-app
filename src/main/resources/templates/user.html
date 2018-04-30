@@ -8,6 +8,8 @@
     <!--<link th:href="@{/css/loginstyle.css}" rel="stylesheet" type="text/css"/>-->
     <link th:href="@{/css/userstyle.css}" rel="stylesheet" type="text/css"/>
 
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
 </head>
 <body>
 
@@ -55,7 +57,7 @@
             <button type="button" class="btn btn-secondary trip-btn" id="addPhoto">Add Photo</button>
         </div>
         <div class="cold-md-2">
-            <button type="button" class="btn btn-primary trip-btn">Add Trip</button>
+            <button type="button" class="btn btn-primary trip-btn" id="addTrip">Add Trip</button>
         </div>
         <div class="cold-md-2">
             <button type="button" class="btn btn-success trip-btn">Edit Trip</button>
@@ -104,13 +106,56 @@
         <input type="text" class="formInput" id="photoLink" placeholder="Photo Link"/><br/>
         <br/>
 
-        <input type="button" class="formInput" id="send" value="Send"/>
-        <input type="button" class="formInput" id="cancel" value="Cancel"/>
+        <input type="button" class="formInput" id="sendPhoto" value="Send"/>
+        <input type="button" class="formInput" id="cancelPhoto" value="Cancel"/>
         <br/>
     </form>
 </div>
 
 
+<div id="addTripDiv">
+    <form class="form" action="#" id="addTripForm">
+
+        <h3 class="formTitle">New Trip Details</h3>
+        <hr/><br/>
+        <label for="tripName">Trip Name: <span>*</span></label>
+        <br/>
+        <input type="text" class="formInput" id="tripName" placeholder="Trip Name"/><br/>
+        <br/>
+
+        <label for="datePickerFrom">Date From: <span>*</span></label>
+        <br/>
+        <input type="text" class="formInput" id="datePickerFrom" placeholder="Date From"/><br/>
+        <br/>
+
+        <label for="datePickerTo">Date To: <span>*</span></label>
+        <br/>
+        <input type="text" class="formInput" id="datePickerTo" placeholder="Date To"/><br/>
+        <br/>
+
+        <label for="tripImpressions">Impressions: <span>*</span></label>
+        <br/>
+        <textarea id="tripImpressions" placeholder="Impressions..."></textarea><br/>
+        <br/>
+
+        <label for="countryName">Country Name: <span>*</span></label>
+        <br/>
+        <input type="text" class="formInput" id="countryName" placeholder="Country/State Name"/><br/>
+        <br/>
+
+        <label for="cityName">City Name: <span>*</span></label>
+        <br/>
+        <input type="text" class="formInput" id="cityName" placeholder="City Name"/><br/>
+        <br/>
+
+
+        <input type="button" class="formInput" id="sendTrip" value="Send"/>
+        <input type="button" class="formInput" id="cancelTrip" value="Cancel"/>
+        <br/>
+    </form>
+</div>
+
+<p id="currentUserId" th:text="text" th:utext="${currentUser.getId()}"></p>
 
 
 <!--<form th:action="@{/logout}" method="post">-->
@@ -121,10 +166,10 @@
 <script type="text/javascript" th:src="@{/plugins/bootstrap.min.js}" ></script>
 <script type="text/javascript" th:src="@{/plugins/ajaxreq.js}" ></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDL3OcNBWkphg7AdM5AZEPN-MU8c2r68Nw&callback=initMap" async defer></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 </body>
 </html>
-
 
 
 
@@ -144,7 +189,7 @@
 <!--</head>-->
 <!--<body>-->
 
-<!--&lt;!&ndash;<p th:text="text" th:utext="${currentUser.username}">Welcome</p>&ndash;&gt;-->
+<!--<p th:text="text" th:utext="${currentUser.username}">Welcome</p>-->
 <!--<p>Hello <span th:text="${user.firstName}"></span></p>-->
 <!--<p>Test</p>-->
 

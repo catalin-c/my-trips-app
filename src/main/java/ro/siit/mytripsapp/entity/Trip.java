@@ -24,6 +24,9 @@ public class Trip {
     @Column(name="trip_name")
     private String tripName;
 
+//    @Column(name="user_id")
+//    private Long userId;
+
     @Temporal(TemporalType.DATE)
     @Column(name="date_from")
     private Date dateFrom;
@@ -151,4 +154,12 @@ public class Trip {
     public void setLongitude(String longitude) {
         this.longitude = longitude;
     }
+
+//    public Long getUserId() {
+//        return userId;
+//    }
+//
+//    public void setUserId(Long userId) {
+//        this.userId = userId;
+//    }
 }

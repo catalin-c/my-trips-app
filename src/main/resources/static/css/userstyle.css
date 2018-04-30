@@ -56,7 +56,9 @@
 }
 
 
-
+#currentUserId {
+    display: none;
+}
 
 
 
@@ -137,7 +139,6 @@ textarea{
     display: none;
 }
 
-
 #addPhotoForm{
     width:350px;
     margin:0px;
@@ -150,5 +151,36 @@ textarea{
     margin-left:-210px;
     margin-top:-255px;
 }
+
+
+#addTripDiv{
+    /*opacity:0.92;*/
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    background: #000;
+    background-size: 100%;
+    /*background: white;*/
+    display: none;
+}
+
+#addTripForm{
+    width:350px;
+    margin:0px;
+    background-color:white;
+    font-family: 'Fauna One', serif;
+    position: relative;
+    border: 5px solid rgb(90, 158, 181);
+    left: 50%;
+    /*top: 50%;*/
+    top: 35%;
+    margin-left:-210px;
+    margin-top:-255px;
+}
+
+
+
 
 

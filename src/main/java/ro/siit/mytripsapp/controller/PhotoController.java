@@ -37,7 +37,7 @@ public class PhotoController {
     }
 
     @PostMapping("/addPhoto")
-    public Photo createNote(@Valid @RequestBody Photo photo) {
+    public Photo addPhoto(@Valid @RequestBody Photo photo) {
         return photoRepository.save(photo);
     }
 }
