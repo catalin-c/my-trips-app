@@ -10,8 +10,8 @@ public class TripModel {
     private Long id;
     private String tripName;
     private Long userId;
-    private Date dateFrom;
-    private Date dateTo;
+    private String dateFrom;
+    private String dateTo;
     private String impression;
     private String latitude;
     private String longitude;
@@ -41,19 +41,36 @@ public class TripModel {
         this.userId = userId;
     }
 
-    public Date getDateFrom() {
+//    public Date getDateFrom() {
+//        return dateFrom;
+//    }
+//
+//    public void setDateFrom(Date dateFrom) {
+//        this.dateFrom = dateFrom;
+//    }
+//
+//    public Date getDateTo() {
+//        return dateTo;
+//    }
+//
+//    public void setDateTo(Date dateTo) {
+//        this.dateTo = dateTo;
+//    }
+
+
+    public String getDateFrom() {
         return dateFrom;
     }
 
-    public void setDateFrom(Date dateFrom) {
+    public void setDateFrom(String dateFrom) {
         this.dateFrom = dateFrom;
     }
 
-    public Date getDateTo() {
+    public String getDateTo() {
         return dateTo;
     }
 
-    public void setDateTo(Date dateTo) {
+    public void setDateTo(String dateTo) {
         this.dateTo = dateTo;
     }
 

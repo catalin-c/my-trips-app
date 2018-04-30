@@ -27,13 +27,21 @@ public class Trip {
     @Column(name="user_id")
     private Long userId;
 
-    @Temporal(TemporalType.DATE)
-    @Column(name="date_from")
-    private Date dateFrom;
+//    @Temporal(TemporalType.DATE)
+//    @Column(name="date_from")
+//    private Date dateFrom;
+//
+//    @Temporal(TemporalType.DATE)
+//    @Column(name="date_to")
+//    private Date dateTo;
 
-    @Temporal(TemporalType.DATE)
+//    @Temporal(TemporalType.DATE)
+    @Column(name="date_from")
+    private String dateFrom;
+
+//    @Temporal(TemporalType.DATE)
     @Column(name="date_to")
-    private Date dateTo;
+    private String dateTo;
 
     @Column(name="impression")
     private String impression;
@@ -54,14 +62,14 @@ public class Trip {
             mappedBy = "trip")
     private Location location;
 
-    protected Trip() {}
-
-    public Trip(String tripName, Date dateFrom, Date dateTo, String impression) {
-        this.tripName = tripName;
-        this.dateFrom = dateFrom;
-        this.dateTo = dateTo;
-        this.impression = impression;
-    }
+//    protected Trip() {}
+//
+//    public Trip(String tripName, Date dateFrom, Date dateTo, String impression) {
+//        this.tripName = tripName;
+//        this.dateFrom = dateFrom;
+//        this.dateTo = dateTo;
+//        this.impression = impression;
+//    }
 
     public boolean equals(Object obj) {
         if (!(obj instanceof Trip))
@@ -99,21 +107,38 @@ public class Trip {
         this.tripName = tripName;
     }
 
-    public Date getDateFrom() {
+    public String getDateFrom() {
         return dateFrom;
     }
 
-    public void setDateFrom(Date dateFrom) {
+    public void setDateFrom(String dateFrom) {
         this.dateFrom = dateFrom;
     }
 
-    public Date getDateTo() {
+    public String getDateTo() {
         return dateTo;
     }
 
-    public void setDateTo(Date dateTo) {
+    public void setDateTo(String dateTo) {
         this.dateTo = dateTo;
     }
+
+
+    //    public Date getDateFrom() {
+//        return dateFrom;
+//    }
+//
+//    public void setDateFrom(Date dateFrom) {
+//        this.dateFrom = dateFrom;
+//    }
+//
+//    public Date getDateTo() {
+//        return dateTo;
+//    }
+//
+//    public void setDateTo(Date dateTo) {
+//        this.dateTo = dateTo;
+//    }
 
     public String getImpression() {
         return impression;

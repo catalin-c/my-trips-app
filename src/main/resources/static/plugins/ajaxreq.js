@@ -110,7 +110,7 @@ $( document ).ready(function() {
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function(data){
-                    location.reload(true);;
+                    location.reload(true);
                 },
                 failure: function(errMsg) {
                     alert("The photo can't be added.");
@@ -120,8 +120,8 @@ $( document ).ready(function() {
     });
 
     //Add trip date pickers
-    $( "#datePickerFrom" ).datepicker();
-    $( "#datePickerTo" ).datepicker();
+    $( "#datePickerFrom" ).datepicker({ dateFormat: 'd M yy' });
+    $( "#datePickerTo" ).datepicker({ dateFormat: 'd M yy' });
 
 
     //Add Trip Form
@@ -143,7 +143,7 @@ $( document ).ready(function() {
         if (tripName == "" || datePickerFrom == "" || datePickerTo == "" || tripImpressions == "" || countryName == "" || cityName == ""){
             alert("Please fill all the fields!");
         }else{
-            $("#addTripDiv").css("display", "none");
+
             var tripDetails = {"userId": userId,"tripName": tripName, "dateFrom": datePickerFrom, "dateTo": datePickerTo,
             "impression": tripImpressions};
 
@@ -151,36 +151,34 @@ $( document ).ready(function() {
             $.ajax({
                 type: "get", url: "https://maps.googleapis.com/maps/api/geocode/json?address=" + cityName + "+" + countryName +
                 "&key=AIzaSyDL3OcNBWkphg7AdM5AZEPN-MU8c2r68Nw",
-                success: function(result){
-                    $("#impressionsText").text(result['impression']);
-                    $("#datesText").text("From: " + result['dateFrom'] + " to " + result['dateTo']);
-                    currentTripId = result['id'];
-                    map.setCenter(new google.maps.LatLng(result['latitude'], result['longitude']));
-                    populatePageSecondPart(result['id']);
+                success: function(mapCoordinates){
+                    tripDetails['latitude'] = mapCoordinates['results'][0]['geometry']['location']['lat'];
+                    tripDetails['longitude'] = mapCoordinates['results'][0]['geometry']['location']['lng'];
 
+                    $.ajax({
+                        type: "POST",
+                        url: "http://localhost:7070/addTrip",
+                        // The key needs to match your method's input parameter (case-sensitive).
+                        data: JSON.stringify(tripDetails),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function(data){
+                            $("#addTripDiv").css("display", "none");
+                            location.reload(true);
+                        },
+                        failure: function(errMsg) {
+                            alert(errMsg);
+                        }
+                    });
                 },
 
                 error: function (request) {
-                    $("#impressionsText").text("Error loading impressions");
-                    $("#datesText").text("Error loading dates");
+                    alert("Please enter a valid country/state and/or city!")
                 }
             });
 
 
-            $.ajax({
-                type: "POST",
-                url: "http://localhost:7070/addPhoto",
-                // The key needs to match your method's input parameter (case-sensitive).
-                data: JSON.stringify(tripDetails),
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function(data){
-                    location.reload(true);;
-                },
-                failure: function(errMsg) {
-                    alert(errMsg);
-                }
-            });
+
         }
     });
 
