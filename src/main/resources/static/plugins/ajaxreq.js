@@ -203,8 +203,8 @@ $( document ).ready(function() {
             },
 
             error: function (request) {
-                $("#impressionsText").text("Error loading impressions");
-                $("#datesText").text("Error loading dates");
+                // $("#impressionsText").text("Error loading impressions");
+                // $("#datesText").text("Error loading dates");
             }
         });
 
@@ -214,52 +214,60 @@ $( document ).ready(function() {
     });
 
     $("#editSendTrip").click(function() {
-        var tripName = $("#tripName").val();
-        var datePickerFrom = $("#datePickerFrom").val();
-        var datePickerTo = $("#datePickerTo").val();
-        var tripImpressions = $("#tripImpressions").val();
-        var countryName = $("#countryName").val();
-        var cityName = $("#cityName").val();
-        if (tripName == "" || datePickerFrom == "" || datePickerTo == "" || tripImpressions == "" || countryName == "" || cityName == ""){
-            alert("Please fill all the fields!");
+        var editTripName = $("#editTripName").val();
+        var editDatePickerFrom = $("#editDatePickerFrom").val();
+        var editDatePickerTo = $("#editDatePickerTo").val();
+        var editTripImpressions = $("#editTripImpressions").val();
+        var editCountryName = $("#editCountryName").val();
+        var editCityName = $("#editCityName").val();
+
+        var editDetails = {};
+        // editDetails['id'] = currentTripId;
+
+        if (!editTripName == "") {
+            editDetails['tripName'] = editTripName;
+        }
+
+        if (!editDatePickerFrom == "") {
+            editDetails['dateFrom'] = editDatePickerFrom;
+        }
+
+        if (!editDatePickerTo == "") {
+            editDetails['dateFrom'] = editDatePickerFrom;
+        }
+
+        if (!editTripImpressions == "") {
+            editDetails['impression'] = editTripImpressions;
+        }
+
+        if (!editCityName == "") {
+            editDetails['country'] = editCityName;
+        }
+
+        if (!editCountryName == "") {
+            editDetails['city'] = editCountryName;
+        }
+
+        if (editTripName == "" && editDatePickerFrom == "" && editDatePickerTo == "" && editTripImpressions == "" && editCountryName == "" && editCityName == ""){
+            alert("Please fill at least one field!");
         }else{
-
-            var tripDetails = {"userId": userId,"tripName": tripName, "dateFrom": datePickerFrom, "dateTo": datePickerTo,
-                "impression": tripImpressions};
-
-            //Request google coordinates
             $.ajax({
-                type: "get", url: "https://maps.googleapis.com/maps/api/geocode/json?address=" + cityName + "+" + countryName +
-                "&key=AIzaSyDL3OcNBWkphg7AdM5AZEPN-MU8c2r68Nw",
-                success: function(mapCoordinates){
-                    tripDetails['latitude'] = mapCoordinates['results'][0]['geometry']['location']['lat'];
-                    tripDetails['longitude'] = mapCoordinates['results'][0]['geometry']['location']['lng'];
-
-                    $.ajax({
-                        type: "POST",
-                        url: "http://localhost:7070/addTrip",
-                        // The key needs to match your method's input parameter (case-sensitive).
-                        data: JSON.stringify(tripDetails),
-                        contentType: "application/json; charset=utf-8",
-                        dataType: "json",
-                        success: function(data){
-                            $("#addTripDiv").css("display", "none");
-                            location.reload(true);
-                        },
-                        failure: function(errMsg) {
-                            alert(errMsg);
-                        }
-                    });
+                type: "PATCH",
+                url: "http://localhost:7070/updateTrip?tripName=" + encodeURIComponent($("#tripSelect :selected").text().trim()),
+                // The key needs to match your method's input parameter (case-sensitive).
+                data: JSON.stringify(editDetails),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function(data){
+                    $("#addTripDiv").css("display", "none");
+                    location.reload(true);
                 },
-
-                error: function (request) {
-                    alert("Please enter a valid country/state and/or city!")
+                failure: function(errMsg) {
+                    alert(errMsg);
                 }
             });
-
-
-
         }
+
     });
 
 

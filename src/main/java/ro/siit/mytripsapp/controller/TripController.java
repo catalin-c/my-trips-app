@@ -73,4 +73,47 @@ public class TripController {
         return tripNames;
     }
 
+    @PatchMapping("/updateTrip")
+    public Trip updateTrip(@RequestParam String tripName,
+                           @Valid @RequestBody Trip editDetails) {
+
+        Trip trip = tripRepository.findByTripName(tripName);
+
+        
+        if(editDetails.getCity() != null) {
+            trip.setCity(editDetails.getCity());
+        }
+
+        if(editDetails.getCountry() != null) {
+            trip.setCountry(editDetails.getCountry());
+        }
+
+        if(editDetails.getDateFrom() != null) {
+            trip.setDateFrom(editDetails.getDateFrom());
+        }
+
+        if(editDetails.getDateTo() != null) {
+            trip.setDateTo(editDetails.getDateTo());
+        }
+
+        if(editDetails.getImpression() != null) {
+            trip.setImpression(editDetails.getImpression());
+        }
+
+        if(editDetails.getTripName() != null) {
+            trip.setTripName(editDetails.getTripName());
+        }
+
+        if(editDetails.getLatitude() != null) {
+            trip.setLatitude(editDetails.getLatitude());
+        }
+
+        if(editDetails.getLongitude() != null) {
+            trip.setLongitude(editDetails.getLongitude());
+        }
+
+        Trip updatedNote = tripRepository.save(trip);
+        return updatedNote;
+    }
+
 }
