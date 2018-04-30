@@ -1,7 +1,27 @@
 $( document ).ready(function() {
 
-    var currentTripName = encodeURIComponent($("#tripSelect :selected").text().trim());
+    var userId = $("#currentUserId").text();
     var currentTripId = 0;
+
+    //Load trip names and populate Trip Select Dropdown
+    $.ajax({
+        type: "get", url: "http://localhost:7070/getTrips/" + userId,
+        success: function(tripNames){
+            $.each(tripNames, function(val, text) {
+                $('#tripSelect').append( $('<option></option>').val(val).html(text) )
+            });
+
+            populatePageFirstPart(encodeURIComponent($("#tripSelect :selected").text().trim()));
+        },
+
+        error: function (request) {
+            $("#impressionsText").text("Error loading impressions");
+            $("#datesText").text("Error loading dates");
+        }
+    });
+
+
+
 
     // Populate trip selector + impressions + dates
     function populatePageFirstPart(sParameter) {
@@ -40,16 +60,10 @@ $( document ).ready(function() {
         });
     }
 
-    //Populate page when the page loads
-    populatePageFirstPart(currentTripName);
-
     //Populate page on selected trip change
     $('#tripSelect').on('change', function() {
-
-        var parameter = encodeURIComponent(this.value.trim());
-
         $(".photoImage").remove()
-        populatePageFirstPart(parameter);
+        populatePageFirstPart(encodeURIComponent($("#tripSelect :selected").text().trim()));
     });
 
     //
@@ -110,7 +124,7 @@ $( document ).ready(function() {
     $( "#datePickerTo" ).datepicker();
 
 
-//Add Trip Form
+    //Add Trip Form
     $("#addTrip").click(function() {
         $("#addTripDiv").css("display", "block");
     });
@@ -119,7 +133,7 @@ $( document ).ready(function() {
     });
 
     $("#sendTrip").click(function() {
-        var userId = $("#currentUserId").val();
+
         var tripName = $("#tripName").val();
         var datePickerFrom = $("#datePickerFrom").val();
         var datePickerTo = $("#datePickerTo").val();

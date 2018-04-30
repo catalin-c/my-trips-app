@@ -44,10 +44,10 @@ public class User {
     @Column(name = "phone")
     private String phone;
 
-    @OneToMany(cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY,
-            mappedBy = "user")
-    private Set<Trip> trips = new HashSet<>();
+//    @OneToMany(cascade = CascadeType.ALL,
+//            fetch = FetchType.LAZY,
+//            mappedBy = "user")
+//    private Set<Trip> trips = new HashSet<>();
 
     @Override
     public String toString() {
@@ -147,11 +147,11 @@ public class User {
         this.phone = phone;
     }
 
-    public Set<Trip> getTrips() {
-        return trips;
-    }
-
-    public void setTrips(Set<Trip> trips) {
-        this.trips = trips;
-    }
+//    public Set<Trip> getTrips() {
+//        return trips;
+//    }
+//
+//    public void setTrips(Set<Trip> trips) {
+//        this.trips = trips;
+//    }
 }

@@ -8,6 +8,9 @@ import ro.siit.mytripsapp.model.TripModel;
 import ro.siit.mytripsapp.repository.TripRepository;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 public class TripController {
@@ -21,6 +24,7 @@ public class TripController {
     private static TripModel mapToModel(Trip entity) {
         TripModel to = new TripModel();
         to.setId(entity.getId());
+        to.setUserId(entity.getUserId());
         to.setTripName(entity.getTripName());
         to.setImpression(entity.getImpression());
         to.setDateFrom(entity.getDateFrom());
@@ -55,9 +59,16 @@ public class TripController {
         return tripRepository.save(trip);
     }
 
-//    @GetMapping("/getTrips/{id}")
-//    public Note getNoteById(@PathVariable(value = "id") Long noteId) {
-//        return noteRepository.findById(noteId)
-//                .orElseThrow(() -> new ResourceNotFoundException("Note", "id", noteId));
-//    }
+    @GetMapping("/getTrips/{id}")
+    public List<String> getTripById(@PathVariable(value = "id") Long userId) {
+        List<TripModel> trips = new ArrayList<>();
+        trips.addAll(tripRepository.findAllByUserId(userId).stream().map(TripController::mapToModel).collect(Collectors.toList()));
+
+        List<String> tripNames = new ArrayList<>();
+        for (TripModel t : trips) {
+            tripNames.add(t.getTripName());
+        }
+        return tripNames;
+    }
+
 }

@@ -45,9 +45,9 @@
             <div id="tripsdropdown" class="dropdown">
                 <label for="tripSelect">Trip: </label>
                 <div class="form-group blu-margin">
-                    <select class="form-control" th:field="${user}"  id="tripSelect">
-                        <!--<option value="0" th:text="Select Trip" ></option>-->
-                        <option th:each="tripName : ${user.getTrips().toArray()}" th:value="${tripName.getTripName()}" th:text="${tripName.getTripName()}"></option>
+                    <select class="form-control" id="tripSelect">
+
+                        <!--<option th:each="tripName : ${user.getTrips().toArray()}" th:value="${tripName.getTripName()}" th:text="${tripName.getTripName()}"></option>-->
                     </select>
                 </div>
             </div>
@@ -155,7 +155,8 @@
     </form>
 </div>
 
-<p id="currentUserId" th:text="text" th:utext="${currentUser.getId()}"></p>
+<p id="currentUserId" th:text="${currentUser.getId()}"></p>
+<!--<p id="currentUserId" th:text="${currentUser.getId()}" th:utext="${currentUser.getId()}"></p>-->
 
 
 <!--<form th:action="@{/logout}" method="post">-->

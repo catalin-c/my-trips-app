@@ -17,15 +17,15 @@ public class Trip {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "user_id", nullable = false)
+//    private User user;
 
     @Column(name="trip_name")
     private String tripName;
 
-//    @Column(name="user_id")
-//    private Long userId;
+    @Column(name="user_id")
+    private Long userId;
 
     @Temporal(TemporalType.DATE)
     @Column(name="date_from")
@@ -83,13 +83,13 @@ public class Trip {
         this.id = id;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
+//    public User getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(User user) {
+//        this.user = user;
+//    }
 
     public String getTripName() {
         return tripName;
@@ -155,11 +155,11 @@ public class Trip {
         this.longitude = longitude;
     }
 
-//    public Long getUserId() {
-//        return userId;
-//    }
-//
-//    public void setUserId(Long userId) {
-//        this.userId = userId;
-//    }
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
 }
