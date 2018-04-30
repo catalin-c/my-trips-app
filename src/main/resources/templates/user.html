@@ -60,7 +60,7 @@
             <button type="button" class="btn btn-primary trip-btn" id="addTrip">Add Trip</button>
         </div>
         <div class="cold-md-2">
-            <button type="button" class="btn btn-success trip-btn">Edit Trip</button>
+            <button type="button" class="btn btn-success trip-btn" id="editTrip">Edit Trip</button>
         </div>
         <div class="cold-md-2">
             <button type="button" class="btn btn-danger trip-btn" id="deleteTrip">Delete Trip</button>
@@ -138,15 +138,17 @@
         <textarea id="tripImpressions" placeholder="Impressions..."></textarea><br/>
         <br/>
 
+        <label for="cityName">City Name: <span>*</span></label>
+        <br/>
+        <input type="text" class="formInput" id="cityName" placeholder="City Name"/><br/>
+        <br/>
+
         <label for="countryName">Country Name: <span>*</span></label>
         <br/>
         <input type="text" class="formInput" id="countryName" placeholder="Country/State Name"/><br/>
         <br/>
 
-        <label for="cityName">City Name: <span>*</span></label>
-        <br/>
-        <input type="text" class="formInput" id="cityName" placeholder="City Name"/><br/>
-        <br/>
+
 
 
         <input type="button" class="formInput" id="sendTrip" value="Send"/>
@@ -154,6 +156,51 @@
         <br/>
     </form>
 </div>
+
+<div id="editTripDiv">
+    <form class="form" action="#" id="editTripForm">
+
+        <h3 class="formTitle">Edit Trip</h3>
+        <hr/><br/>
+        <label for="tripName">Trip Name: </label>
+        <br/>
+        <input type="text" class="formInput" id="editTripName"/><br/>
+        <br/>
+
+        <label for="datePickerFrom">Date From: </label>
+        <br/>
+        <input type="text" class="formInput" id="editDatePickerFrom"/><br/>
+        <br/>
+
+        <label for="datePickerTo">Date To: </label>
+        <br/>
+        <input type="text" class="formInput" id="editDatePickerTo"/><br/>
+        <br/>
+
+        <label for="tripImpressions">Impressions: </label>
+        <br/>
+        <textarea id="editTripImpressions" ></textarea><br/>
+        <br/>
+
+        <label for="cityName">City Name: </label>
+        <br/>
+        <input type="text" class="formInput" id="editCityName" /><br/>
+        <br/>
+
+        <label for="countryName">Country Name: </label>
+        <br/>
+        <input type="text" class="formInput" id="editCountryName"/><br/>
+        <br/>
+
+
+
+
+        <input type="button" class="formInput" id="editSendTrip" value="Send"/>
+        <input type="button" class="formInput" id="editCancelTrip" value="Cancel"/>
+        <br/>
+    </form>
+</div>
+
 
 <p id="currentUserId" th:text="${currentUser.getId()}"></p>
 <!--<p id="currentUserId" th:text="${currentUser.getId()}" th:utext="${currentUser.getId()}"></p>-->

@@ -182,5 +182,85 @@ $( document ).ready(function() {
         }
     });
 
+    //Edit trip date pickers
+    $( "#editDatePickerFrom" ).datepicker({ dateFormat: 'd M yy' });
+    $( "#editDatePickerTo" ).datepicker({ dateFormat: 'd M yy' });
+
+
+    //Edit Trip Form
+    $("#editTrip").click(function() {
+        $.ajax({
+            type: "get", url: "http://localhost:7070/trip?tripName=" + encodeURIComponent($("#tripSelect :selected").text().trim()),
+            success: function(trip){
+                $("#editTripName").attr("placeholder", trip['tripName']);
+                $("#editDatePickerFrom").attr("placeholder", trip['dateFrom']);
+                $("#editDatePickerTo").attr("placeholder", trip['dateTo']);
+                $("#editTripImpressions").attr("placeholder", trip['impression']);
+                $("#editCityName").attr("placeholder", trip['city']);
+                $("#editCountryName").attr("placeholder", trip['country']);
+
+                $("#editTripDiv").css("display", "block");
+            },
+
+            error: function (request) {
+                $("#impressionsText").text("Error loading impressions");
+                $("#datesText").text("Error loading dates");
+            }
+        });
+
+    });
+    $("#editTripForm #editCancelTrip").click(function() {
+        $(this).parent().parent().hide();
+    });
+
+    $("#editSendTrip").click(function() {
+        var tripName = $("#tripName").val();
+        var datePickerFrom = $("#datePickerFrom").val();
+        var datePickerTo = $("#datePickerTo").val();
+        var tripImpressions = $("#tripImpressions").val();
+        var countryName = $("#countryName").val();
+        var cityName = $("#cityName").val();
+        if (tripName == "" || datePickerFrom == "" || datePickerTo == "" || tripImpressions == "" || countryName == "" || cityName == ""){
+            alert("Please fill all the fields!");
+        }else{
+
+            var tripDetails = {"userId": userId,"tripName": tripName, "dateFrom": datePickerFrom, "dateTo": datePickerTo,
+                "impression": tripImpressions};
+
+            //Request google coordinates
+            $.ajax({
+                type: "get", url: "https://maps.googleapis.com/maps/api/geocode/json?address=" + cityName + "+" + countryName +
+                "&key=AIzaSyDL3OcNBWkphg7AdM5AZEPN-MU8c2r68Nw",
+                success: function(mapCoordinates){
+                    tripDetails['latitude'] = mapCoordinates['results'][0]['geometry']['location']['lat'];
+                    tripDetails['longitude'] = mapCoordinates['results'][0]['geometry']['location']['lng'];
+
+                    $.ajax({
+                        type: "POST",
+                        url: "http://localhost:7070/addTrip",
+                        // The key needs to match your method's input parameter (case-sensitive).
+                        data: JSON.stringify(tripDetails),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function(data){
+                            $("#addTripDiv").css("display", "none");
+                            location.reload(true);
+                        },
+                        failure: function(errMsg) {
+                            alert(errMsg);
+                        }
+                    });
+                },
+
+                error: function (request) {
+                    alert("Please enter a valid country/state and/or city!")
+                }
+            });
+
+
+
+        }
+    });
+
 
 });

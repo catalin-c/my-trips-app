@@ -31,6 +31,8 @@ public class TripController {
         to.setDateTo(entity.getDateTo());
         to.setLatitude(entity.getLatitude());
         to.setLongitude(entity.getLongitude());
+        to.setCity(entity.getCity());
+        to.setCountry(entity.getCountry());
         return to;
     }
 

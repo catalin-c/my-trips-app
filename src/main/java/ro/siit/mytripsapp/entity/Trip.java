@@ -52,6 +52,12 @@ public class Trip {
     @Column(name="longitude")
     private String longitude;
 
+    @Column(name="city")
+    private String city;
+
+    @Column(name="country")
+    private String country;
+
 //    @OneToMany(cascade = CascadeType.ALL,
 //            fetch = FetchType.LAZY,
 //            mappedBy = "trip")
@@ -123,6 +129,21 @@ public class Trip {
         this.dateTo = dateTo;
     }
 
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
 
     //    public Date getDateFrom() {
 //        return dateFrom;
