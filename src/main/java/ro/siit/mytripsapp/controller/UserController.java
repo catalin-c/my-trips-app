@@ -88,4 +88,9 @@ public class UserController {
         return "redirect:/users";
     }
 
+    @RequestMapping("/register")
+    public String getRegisterPage() {
+        return "register";
+    }
+
 }
