@@ -22,7 +22,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="#">Trips <span class="sr-only">(current)</span></a>
+                <a class="nav-link active" href="#">Trips <span class="sr-only">(current)</span></a>
             </li>
         </ul>
         <ul class="navbar-nav ml-md-auto">
@@ -203,6 +203,9 @@
 
 
 <p id="currentUserId" th:text="${currentUser.getId()}"></p>
+
+
+
 <!--<p id="currentUserId" th:text="${currentUser.getId()}" th:utext="${currentUser.getId()}"></p>-->
 
 
@@ -212,7 +215,7 @@
 <script type="text/javascript" th:src="@{/plugins/popper.min.js}"></script>
 <script type="text/javascript" th:src="@{/plugins/jquery-3.3.1.min.js}"></script>
 <script type="text/javascript" th:src="@{/plugins/bootstrap.min.js}" ></script>
-<script type="text/javascript" th:src="@{/plugins/ajaxreq.js}" ></script>
+<script type="text/javascript" th:src="@{/plugins/userajax.js}" ></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDL3OcNBWkphg7AdM5AZEPN-MU8c2r68Nw&callback=initMap" async defer></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 

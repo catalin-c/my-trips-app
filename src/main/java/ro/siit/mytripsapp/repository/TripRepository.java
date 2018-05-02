@@ -1,11 +1,11 @@
 package ro.siit.mytripsapp.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 import ro.siit.mytripsapp.entity.Trip;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Repository

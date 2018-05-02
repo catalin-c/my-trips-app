@@ -1,6 +1,7 @@
 package ro.siit.mytripsapp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;
 import ro.siit.mytripsapp.entity.Trip;
@@ -10,6 +11,7 @@ import ro.siit.mytripsapp.repository.TripRepository;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
