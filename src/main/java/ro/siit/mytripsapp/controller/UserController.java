@@ -52,7 +52,7 @@ public class UserController {
                 .orElseThrow(() -> new NoSuchElementException(String.format("User=%s not found", currentUser.getId()))));
     }
 
-    @PreAuthorize("@currentUserServiceImpl.canAccessUser(principal, #id)")
+//    @PreAuthorize("@currentUserServiceImpl.canAccessUser(principal, #id)")
     @RequestMapping("/profile")
     public ModelAndView getProfilePage(CurrentUser currentUser) {
         LOGGER.debug("Getting user page for user={}", currentUser.getId());
