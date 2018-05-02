@@ -13,29 +13,25 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="#">Trips</a>
-            </li>
-        </ul>
         <ul class="navbar-nav ml-md-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Profile <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/profile">Profile <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item ">
-                <a class="nav-link" href="#">Login </a>
+                <a class="nav-link" href="/">Trips </a>
             </li>
         </ul>
     </div>
 </nav>
 
 <div class="d-flex align-items-center flex-column justify-content-center h-100 bg-dark text-white" id="header">
-    <!--<h3 class="display-4">Edit Profile</h3>-->
+    <h3 class="display-4">Edit Profile</h3>
     <form action="#" class="form-signin">
         <div class="form-group">
             <label for="firstName">First Name</label>
@@ -44,11 +40,11 @@
         </div>
         <div class="form-group">
             <label for="lastName">Last Name</label>
-            <input id="lastName" class="form-control"  type="text">
+            <input id="lastName" class="form-control" type="text">
         </div>
         <div class="form-group">
             <label for="email">Email</label>
-            <input id="email" class="form-control"  type="text">
+            <input id="email" class="form-control" type="text">
         </div>
         <div class="form-group">
             <label for="password">Password:</label>
@@ -56,11 +52,11 @@
         </div>
         <div class="form-group">
             <label for="city">City</label>
-            <input id="city" class="form-control"  type="text">
+            <input id="city" class="form-control" type="text">
         </div>
         <div class="form-group">
             <label for="address">Address</label>
-            <input id="address" class="form-control"  type="text">
+            <input id="address" class="form-control" type="text">
         </div>
         <div class="form-group">
             <label for="phone">Phone</label>
@@ -70,7 +66,7 @@
             <button id="editProfile" type="button" class="btn btn-info btn-lg btn-block">Edit Profile</button>
         </div>
         <!--<div align="center" th:if="${param.error}">-->
-            <!--<p style="font-size: 20; color: #FF1C19;">Email or Password invalid, please verify</p>-->
+        <!--<p style="font-size: 20; color: #FF1C19;">Email or Password invalid, please verify</p>-->
         <!--</div>-->
     </form>
 </div>
@@ -80,8 +76,8 @@
 
 
 <script type="text/javascript" th:src="@{/plugins/jquery-3.3.1.min.js}"></script>
-<script type="text/javascript" th:src="@{/plugins/bootstrap.min.js}" ></script>
-<script type="text/javascript" th:src="@{/plugins/profileajax.js}" ></script>
+<script type="text/javascript" th:src="@{/plugins/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/plugins/profileajax.js}"></script>
 
 </body>
 </html>

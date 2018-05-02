@@ -214,8 +214,9 @@ textarea{
     margin-top:-255px;
 }
 
-
-
+.hide {
+    display: none;
+}
 
 
 

@@ -35,7 +35,8 @@ $(document).ready(function () {
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function(data){
-                    alert("Request Success!");
+                    $(location).attr("href", "/login");
+                    // alert("Request Success!");
                     // location.reload(true);
                 },
                 failure: function(errMsg) {

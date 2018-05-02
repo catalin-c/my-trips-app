@@ -17,6 +17,10 @@ $( document ).ready(function() {
         error: function (request) {
             $("#impressionsText").text("Error loading impressions");
             $("#datesText").text("Error loading dates");
+
+            // $("#impressionsText").addClass(".hide");
+            // $("#datesText").addClass(".hide");
+            // $(".googleMap").addClass(".hide");
         }
     });
 
@@ -39,6 +43,10 @@ $( document ).ready(function() {
             error: function (request) {
                 $("#impressionsText").text("Error loading impressions");
                 $("#datesText").text("Error loading dates");
+
+                // $("#impressionsText").addClass(".hide");
+                // $("#datesText").addClass(".hide");
+                // $(".googleMap").addClass(".hide");
             }
         });
     }
@@ -54,8 +62,12 @@ $( document ).ready(function() {
             },
 
             error: function (resultTwo) {
-                // $("#impressionsText").text("Error loading impressions");
-                // $("#datesText").text("Error loading dates");
+                $("#impressionsText").text("Error loading impressions");
+                $("#datesText").text("Error loading dates");
+
+                // $("#impressionsText").addClass(".hide");
+                // $("#datesText").addClass(".hide");
+                // $(".googleMap").addClass(".hide");
             }
         });
     }
