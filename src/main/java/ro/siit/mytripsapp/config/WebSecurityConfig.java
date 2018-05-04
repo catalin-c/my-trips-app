@@ -34,7 +34,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //                "/links", "/contact-us", "/articles/**", "/change-language/**", "/destinations/**"};
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        String[] staticContent = {"/css/**", "/plugins/**", "/images/**"};
+        String[] staticContent = {"/css/**", "/plugins/**", "/images/**", "/scripts/**", "/scripts/validation/**"};
 
         http.csrf().disable();
 

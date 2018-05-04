@@ -18,16 +18,23 @@
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-md-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="/profile">Profile <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item ">
-                <a class="nav-link" href="/">Trips </a>
-            </li>
-        </ul>
-    </div>
+    <<div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+            <a class="nav-link" href="/">Trips <span class="sr-only">(current)</span></a>
+        </li>
+    </ul>
+    <ul class="navbar-nav ml-md-auto">
+        <li class="nav-item">
+            <a class="nav-link active" href="/profile">Profile</a>
+        </li>
+        <li class="nav-item">
+            <form th:action="@{/logout}" method="post">
+                <input class="nav-link" id="logout" type="submit" value="Sign Out"/>
+            </form>
+        </li>
+    </ul>
+</div>
 </nav>
 
 <div class="d-flex align-items-center flex-column justify-content-center h-100 bg-dark text-white" id="header">
@@ -65,19 +72,14 @@
         <div class="form-group">
             <button id="editProfile" type="button" class="btn btn-info btn-lg btn-block">Edit Profile</button>
         </div>
-        <!--<div align="center" th:if="${param.error}">-->
-        <!--<p style="font-size: 20; color: #FF1C19;">Email or Password invalid, please verify</p>-->
-        <!--</div>-->
     </form>
 </div>
 
-
 <p id="currentUserId" th:text="${currentUser.getId()}"></p>
-
 
 <script type="text/javascript" th:src="@{/plugins/jquery-3.3.1.min.js}"></script>
 <script type="text/javascript" th:src="@{/plugins/bootstrap.min.js}"></script>
-<script type="text/javascript" th:src="@{/plugins/profileajax.js}"></script>
+<script type="text/javascript" th:src="@{/scripts/profileajax.js}"></script>
 
 </body>
 </html>

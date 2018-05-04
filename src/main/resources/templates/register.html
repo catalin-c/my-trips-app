@@ -4,8 +4,10 @@
 
     <meta charset="UTF-8">
     <title>Register</title>
+    <link href="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/theme-default.min.css"
+          rel="stylesheet" type="text/css"/>
     <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
-    <link th:href="@{/css/loginstyle.css}" rel="stylesheet"/>
+    <!--<link th:href="@{/css/loginstyle.css}" rel="stylesheet"/>-->
     <link th:href="@{/css/registerstyle.css}" rel="stylesheet"/>
 
 </head>
@@ -13,7 +15,8 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -29,26 +32,26 @@
     </div>
 </nav>
 
-<div class="d-flex align-items-center flex-column justify-content-center h-100 bg-dark text-white" id="header">
-    <!--<h3 class="display-4">Edit Profile</h3>-->
+<div class="d-flex align-items-center flex-column justify-content-center h-100 bg-dark text-white" id="header" >
     <h3 class="display-4">Register.</h3>
     <form action="#" class="form-signin">
         <div class="form-group">
             <label for="firstName">First Name</label>
             <input id="firstName" class="form-control" placeholder="First Name.." type="text">
-            <!--<input id="firstName" class="form-control" placeholder="First Name.." type="text">-->
         </div>
         <div class="form-group">
             <label for="lastName">Last Name</label>
-            <input id="lastName" placeholder="Last Name.." class="form-control"  type="text">
+            <input id="lastName" placeholder="Last Name.." class="form-control" type="text">
         </div>
         <div class="form-group">
             <label for="email">Email</label>
-            <input id="email" placeholder="Email.." class="form-control"  type="text">
+            <input id="email" placeholder="Email.." class="form-control" type="text" data-validation="email" data-validation-error-msg="Invalid email.">
         </div>
         <div class="form-group">
             <label for="password">Password:</label>
-            <input id="password" class="form-control" placeholder="Password.." type="password">
+            <input id="password" class="form-control" placeholder="Password.." type="password" name="pass_confirmation"
+                   data-validation="strength"
+                   data-validation-strength="2">
         </div>
         <div class="form-group">
             <label for="city">City</label>
@@ -60,24 +63,60 @@
         </div>
         <div class="form-group">
             <label for="phone">Phone Number</label>
-            <input id="phone" class="form-control" placeholder="Phone Number.."type="text">
+            <input id="phone" class="form-control" placeholder="Phone Number.." type="text">
         </div>
         <div class="form-group">
             <button id="register" type="button" class="btn btn-info btn-lg btn-block">Register</button>
         </div>
-        <!--<div align="center" th:if="${param.error}">-->
-        <!--<p style="font-size: 20; color: #FF1C19;">Email or Password invalid, please verify</p>-->
-        <!--</div>-->
     </form>
 </div>
 
 
-<!--<p id="currentUserId" th:text="${currentUser.getId()}"></p>-->
-
+<!--<div class="d-flex align-items-center flex-column justify-content-center h-100 bg-dark text-white" id="header" >-->
+    <!--<h3 class="display-4">Register.</h3>-->
+    <!--<form action="#" class="form-signin">-->
+        <!--<div class="form-group">-->
+            <!--<label for="firstName">First Name</label>-->
+            <!--<input id="firstName" class="form-control" placeholder="First Name.." type="text">-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+            <!--<label for="lastName">Last Name</label>-->
+            <!--<input id="lastName" placeholder="Last Name.." class="form-control" type="text">-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+            <!--<label for="email">Email</label>-->
+            <!--<input id="email" placeholder="Email.." class="form-control" type="text" data-validation="email" data-validation-error-msg="Invalid email.">-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+            <!--<label for="password">Password:</label>-->
+            <!--<input id="password" class="form-control" placeholder="Password.." type="password" name="pass_confirmation"-->
+                   <!--data-validation="strength"-->
+                   <!--data-validation-strength="2">-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+            <!--<label for="city">City</label>-->
+            <!--<input id="city" class="form-control" placeholder="City.." type="text">-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+            <!--<label for="address">Address</label>-->
+            <!--<input id="address" class="form-control" placeholder="Address.." type="text">-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+            <!--<label for="phone">Phone Number</label>-->
+            <!--<input id="phone" class="form-control" placeholder="Phone Number.." type="text">-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+            <!--<button id="register" type="button" class="btn btn-info btn-lg btn-block">Register</button>-->
+        <!--</div>-->
+    <!--</form>-->
+<!--</div>-->
 
 <script type="text/javascript" th:src="@{/plugins/jquery-3.3.1.min.js}"></script>
-<script type="text/javascript" th:src="@{/plugins/bootstrap.min.js}" ></script>
-<script type="text/javascript" th:src="@{/plugins/registerajax.js}" ></script>
+<script type="text/javascript" th:src="@{/plugins/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/scripts/registerajax.js}"></script>
+<!--<script type="text/javascript" th:src="@{/scripts/validation/register-validator.js}"></script>-->
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+<script type="text/javascript" th:src="@{/scripts/validation/register-validator.js}"></script>
 
 </body>
 </html>

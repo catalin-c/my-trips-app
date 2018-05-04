@@ -1,8 +1,15 @@
 body,html {
     height: 100%;
+    width: 100%;
     overflow: hidden;
 }
 
 #currentUserId {
     display: none;
 }
+
+.form-control {
+    width: 22vw;
+}
+
+

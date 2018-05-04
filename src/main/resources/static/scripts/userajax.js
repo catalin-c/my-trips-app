@@ -5,7 +5,7 @@ $( document ).ready(function() {
 
     //Load trip names and populate Trip Select Dropdown
     $.ajax({
-        type: "get", url: "http://localhost:7070/getTrips/" + userId,
+        type: "get", url: "/getTrips/" + userId,
         success: function(tripNames){
             $.each(tripNames, function(val, text) {
                 $('#tripSelect').append( $('<option></option>').val(val).html(text) )
@@ -30,7 +30,7 @@ $( document ).ready(function() {
     // Populate trip selector + impressions + dates
     function populatePageFirstPart(sParameter) {
         $.ajax({
-            type: "get", url: "http://localhost:7070/trip?tripName=" + sParameter,
+            type: "get", url: "/trip?tripName=" + sParameter,
             success: function(result){
                 $("#impressionsText").text(result['impression']);
                 $("#datesText").text("From: " + result['dateFrom'] + " to " + result['dateTo']);
@@ -54,7 +54,7 @@ $( document ).ready(function() {
     //Populate the page with trip photos
     function populatePageSecondPart(tripId) {
         $.ajax({
-            type: "get", url: "http://localhost:7070/photos?tripId=" + tripId,
+            type: "get", url: "/photos?tripId=" + tripId,
             success: function(resultTwo){
                 for (var i = 0; i < resultTwo.length; i++) {
                     $( '<div class="col-md-4 photoImage"> <img src="' + resultTwo[i]['photoLink'] + '" alt="photo" class="img-thumbnail"> <h3>' + resultTwo[i]['title'] + '</h3></div>' ).insertAfter( ".googleMap" );
@@ -85,7 +85,7 @@ $( document ).ready(function() {
 
             $.ajax({
                 type: "POST",
-                url: "http://localhost:7070/delete/trip/" + currentTripId,
+                url: "/delete/trip/" + currentTripId,
                 success: function () {
                     location.reload(true);
                 },
@@ -116,7 +116,7 @@ $( document ).ready(function() {
 
             $.ajax({
                 type: "POST",
-                url: "http://localhost:7070/addPhoto",
+                url: "/addPhoto",
                 // The key needs to match your method's input parameter (case-sensitive).
                 data: JSON.stringify(photoDetails),
                 contentType: "application/json; charset=utf-8",
@@ -169,7 +169,7 @@ $( document ).ready(function() {
 
                     $.ajax({
                         type: "POST",
-                        url: "http://localhost:7070/addTrip",
+                        url: "/addTrip",
                         // The key needs to match your method's input parameter (case-sensitive).
                         data: JSON.stringify(tripDetails),
                         contentType: "application/json; charset=utf-8",
@@ -202,7 +202,7 @@ $( document ).ready(function() {
     //Edit Trip Form
     $("#editTrip").click(function() {
         $.ajax({
-            type: "get", url: "http://localhost:7070/trip?tripName=" + encodeURIComponent($("#tripSelect :selected").text().trim()),
+            type: "get", url: "/trip?tripName=" + encodeURIComponent($("#tripSelect :selected").text().trim()),
             success: function(trip){
                 $("#editTripName").attr("placeholder", trip['tripName']);
                 $("#editDatePickerFrom").attr("placeholder", trip['dateFrom']);

@@ -1,13 +1,7 @@
 package ro.siit.mytripsapp.entity.user;
 
-import org.hibernate.validator.constraints.Length;
-import ro.siit.mytripsapp.entity.Trip;
-
 import javax.persistence.*;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @Table(name = "user")
@@ -28,11 +22,9 @@ public class User {
     private String email;
 
     @Column(name = "first_name")
-//    @NotEmpty(message = "*Please provide your name")
     private String firstName;
 
     @Column(name = "last_name")
-//    @NotEmpty(message = "*Please provide your last name")
     private String lastName;
 
     @Column(name = "city")
@@ -43,21 +35,6 @@ public class User {
 
     @Column(name = "phone")
     private String phone;
-
-//    @OneToMany(cascade = CascadeType.ALL,
-//            fetch = FetchType.LAZY,
-//            mappedBy = "user")
-//    private Set<Trip> trips = new HashSet<>();
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", username='" + email.replaceFirst("@.*", "@***") +
-                ", passwordHash='" + passwordHash.substring(0, 10) +
-                ", role=" + role +
-                '}';
-    }
 
     public User() {
 
@@ -146,12 +123,4 @@ public class User {
     public void setPhone(String phone) {
         this.phone = phone;
     }
-
-//    public Set<Trip> getTrips() {
-//        return trips;
-//    }
-//
-//    public void setTrips(Set<Trip> trips) {
-//        this.trips = trips;
-//    }
 }

@@ -27,11 +27,6 @@ body,html {
 
 }
 
-
-/*#dropdownMenuButton:hover {*/
-    /*box-shadow: none;*/
-/*}*/
-
 #tripsdropdown {
     width: 100%;
 }
@@ -49,11 +44,6 @@ body,html {
     margin-top: 60px;
 }
 
-/*@media (min-width: 1200px) {*/
-    /*.container{*/
-        /*max-width: 1100px;*/
-    /*}*/
-/*}*/
 
 #map {
     height: 270px;
@@ -65,26 +55,6 @@ body,html {
     display: none;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-@import url(http://fonts.googleapis.com/css?family=Fauna+One|Muli);
-/*h2{*/
-    /*margin-left: 65px;*/
-    /*text-shadow:1px 0px 3px gray;*/
-/*}*/
 .formTitle{
     font-size:18px;
     text-align:center;
@@ -160,7 +130,6 @@ textarea{
 
 
 #addTripDiv{
-    /*opacity:0.92;*/
     position: absolute;
     top: 0px;
     left: 0px;
@@ -168,7 +137,6 @@ textarea{
     width: 100%;
     background: #000;
     background-size: 100%;
-    /*background: white;*/
     display: none;
 }
 
@@ -180,7 +148,6 @@ textarea{
     position: relative;
     border: 5px solid rgb(90, 158, 181);
     left: 50%;
-    /*top: 50%;*/
     top: 35%;
     margin-left:-210px;
     margin-top:-255px;
@@ -188,7 +155,6 @@ textarea{
 
 
 #editTripDiv{
-    /*opacity:0.92;*/
     position: absolute;
     top: 0px;
     left: 0px;
@@ -196,7 +162,6 @@ textarea{
     width: 100%;
     background: #000;
     background-size: 100%;
-    /*background: white;*/
     display: none;
 }
 
@@ -208,7 +173,6 @@ textarea{
     position: relative;
     border: 5px solid rgb(90, 158, 181);
     left: 50%;
-    /*top: 50%;*/
     top: 35%;
     margin-left:-210px;
     margin-top:-255px;

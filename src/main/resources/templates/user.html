@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <title>My Trips</title>
     <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
-    <!--<link th:href="@{/css/loginstyle.css}" rel="stylesheet" type="text/css"/>-->
     <link th:href="@{/css/userstyle.css}" rel="stylesheet" type="text/css"/>
 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -30,7 +29,6 @@
                 <a class="nav-link" href="/profile">Profile</a>
             </li>
             <li class="nav-item">
-                <!--<a class="nav-link" href="#">Logout </a>-->
                 <form th:action="@{/logout}" method="post">
                     <input class="nav-link" id="logout" type="submit" value="Sign Out"/>
                 </form>
@@ -47,7 +45,6 @@
                 <div class="form-group blu-margin">
                     <select class="form-control" id="tripSelect">
 
-                        <!--<option th:each="tripName : ${user.getTrips().toArray()}" th:value="${tripName.getTripName()}" th:text="${tripName.getTripName()}"></option>-->
                     </select>
                 </div>
             </div>
@@ -85,9 +82,6 @@
         </div>
 
     </div>
-
-    <!--<p id="exampleTextarea"><span th:text="${user.getTrips().toArray()[0].getImpression()}"></span></p>-->
-    <!--<p id="getTripId"><span th:text="${user.getTrips().toArray()[0].getId()}"></span></p>-->
 
 </div>
 
@@ -149,8 +143,6 @@
         <br/>
 
 
-
-
         <input type="button" class="formInput" id="sendTrip" value="Send"/>
         <input type="button" class="formInput" id="cancelTrip" value="Cancel"/>
         <br/>
@@ -193,29 +185,19 @@
         <br/>
 
 
-
-
         <input type="button" class="formInput" id="editSendTrip" value="Send"/>
         <input type="button" class="formInput" id="editCancelTrip" value="Cancel"/>
         <br/>
     </form>
 </div>
 
-
 <p id="currentUserId" th:text="${currentUser.getId()}"></p>
 
-
-
-<!--<p id="currentUserId" th:text="${currentUser.getId()}" th:utext="${currentUser.getId()}"></p>-->
-
-
-<!--<form th:action="@{/logout}" method="post">-->
-<!--<input type="submit" value="Sign Out"/>-->
-<script type="text/javascript" th:src="@{/plugins/googlemap.js}"></script>
+<script type="text/javascript" th:src="@{/scripts/googlemap.js}"></script>
 <script type="text/javascript" th:src="@{/plugins/popper.min.js}"></script>
 <script type="text/javascript" th:src="@{/plugins/jquery-3.3.1.min.js}"></script>
 <script type="text/javascript" th:src="@{/plugins/bootstrap.min.js}" ></script>
-<script type="text/javascript" th:src="@{/plugins/userajax.js}" ></script>
+<script type="text/javascript" th:src="@{/scripts/userajax.js}" ></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDL3OcNBWkphg7AdM5AZEPN-MU8c2r68Nw&callback=initMap" async defer></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
