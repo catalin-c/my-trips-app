@@ -22,3 +22,7 @@ body,html {
 #logout:hover {
     color: rgba(255,255,255,.75);
 }
+
+.form-control {
+    width: 26vw;
+}

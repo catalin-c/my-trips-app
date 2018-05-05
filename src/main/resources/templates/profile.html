@@ -4,6 +4,8 @@
 
     <meta charset="UTF-8">
     <title>Profile</title>
+    <link href="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/theme-default.min.css"
+          rel="stylesheet" type="text/css"/>
     <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
     <link th:href="@{/css/loginstyle.css}" rel="stylesheet"/>
     <link th:href="@{/css/profilestyle.css}" rel="stylesheet"/>
@@ -18,7 +20,7 @@
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <<div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
         <li class="nav-item">
             <a class="nav-link" href="/">Trips <span class="sr-only">(current)</span></a>
@@ -42,35 +44,48 @@
     <form action="#" class="form-signin">
         <div class="form-group">
             <label for="firstName">First Name</label>
-            <input id="firstName" class="form-control" type="text">
+            <input id="firstName" class="form-control" type="text" data-validation="custom"
+                   data-validation-regexp="^[a-zA-Z ,.'-]+$" data-validation-error-msg="Invalid first name."
+                   maxlength="20" data-validation-optional="true">
             <!--<input id="firstName" class="form-control" placeholder="First Name.." type="text">-->
         </div>
         <div class="form-group">
             <label for="lastName">Last Name</label>
-            <input id="lastName" class="form-control" type="text">
+            <input id="lastName" class="form-control" type="text" data-validation="custom"
+                   data-validation-regexp="^[a-zA-Z ,.'-]+$" data-validation-error-msg="Invalid last name."
+                   maxlength="20" data-validation-optional="true">
         </div>
         <div class="form-group">
             <label for="email">Email</label>
-            <input id="email" class="form-control" type="text">
+            <input id="email" class="form-control" type="text" name="email" data-validation="email server"
+                   data-validation-url="/email-validator" data-validation-optional="true">
         </div>
         <div class="form-group">
             <label for="password">Password:</label>
-            <input id="password" class="form-control" placeholder="********" type="password">
+            <input id="password" class="form-control" placeholder="********" type="password" name="pass_confirmation"
+                   data-validation="custom" data-validation-regexp="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
+                   data-validation-error-msg="Minimum eight characters, at least one letter and one number."
+                   data-validation-optional="true">
         </div>
         <div class="form-group">
             <label for="city">City</label>
-            <input id="city" class="form-control" type="text">
+            <input id="city" class="form-control" type="text" data-validation="custom"
+                   data-validation-regexp="^([a-zA-Z0-9]+)$" data-validation-error-msg="Invalid city name."
+                   data-validation-optional="true">
         </div>
         <div class="form-group">
             <label for="address">Address</label>
-            <input id="address" class="form-control" type="text">
+            <input id="address" class="form-control" type="text" data-validation="length"
+                   data-validation-length="min5" data-validation-error-msg="Invalid address."
+                   data-validation-optional="true">
         </div>
         <div class="form-group">
             <label for="phone">Phone</label>
-            <input id="phone" class="form-control" type="text">
+            <input id="phone" class="form-control" type="text" data-validation="custom" data-validation-regexp="^([0-9 +]+)$"
+                   data-validation-error-msg="Invalid phone number." data-validation-optional="true">
         </div>
         <div class="form-group">
-            <button id="editProfile" type="button" class="btn btn-info btn-lg btn-block">Edit Profile</button>
+            <button id="editProfile" type="submit" class="btn btn-info btn-lg btn-block">Edit Profile</button>
         </div>
     </form>
 </div>
@@ -79,6 +94,7 @@
 
 <script type="text/javascript" th:src="@{/plugins/jquery-3.3.1.min.js}"></script>
 <script type="text/javascript" th:src="@{/plugins/bootstrap.min.js}"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
 <script type="text/javascript" th:src="@{/scripts/profileajax.js}"></script>
 
 </body>
