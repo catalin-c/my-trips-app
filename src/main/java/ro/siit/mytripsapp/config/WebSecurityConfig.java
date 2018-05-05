@@ -42,6 +42,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(staticContent).permitAll()
                 .antMatchers( "/register").permitAll()
                 .antMatchers( "/register/newUser").permitAll()
+                .antMatchers("/email-validator").permitAll()
                 .antMatchers("/users/**").hasAuthority("ADMIN")
                 .anyRequest().fullyAuthenticated()
                 .and()

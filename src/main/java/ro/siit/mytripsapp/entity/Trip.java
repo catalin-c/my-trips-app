@@ -17,29 +17,15 @@ public class Trip {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "user_id", nullable = false)
-//    private User user;
-
     @Column(name="trip_name")
     private String tripName;
 
     @Column(name="user_id")
     private Long userId;
 
-//    @Temporal(TemporalType.DATE)
-//    @Column(name="date_from")
-//    private Date dateFrom;
-//
-//    @Temporal(TemporalType.DATE)
-//    @Column(name="date_to")
-//    private Date dateTo;
-
-//    @Temporal(TemporalType.DATE)
     @Column(name="date_from")
     private String dateFrom;
 
-//    @Temporal(TemporalType.DATE)
     @Column(name="date_to")
     private String dateTo;
 
@@ -58,24 +44,11 @@ public class Trip {
     @Column(name="country")
     private String country;
 
-//    @OneToMany(cascade = CascadeType.ALL,
-//            fetch = FetchType.LAZY,
-//            mappedBy = "trip")
-//    private Set<Photo> photos = new HashSet<>();
-
     @OneToOne(fetch = FetchType.LAZY,
             cascade =  CascadeType.ALL,
             mappedBy = "trip")
     private Location location;
 
-//    protected Trip() {}
-//
-//    public Trip(String tripName, Date dateFrom, Date dateTo, String impression) {
-//        this.tripName = tripName;
-//        this.dateFrom = dateFrom;
-//        this.dateTo = dateTo;
-//        this.impression = impression;
-//    }
 
     public boolean equals(Object obj) {
         if (!(obj instanceof Trip))
@@ -85,10 +58,6 @@ public class Trip {
         return this.tripName.equals(((Trip) obj).tripName);
     }
 
-//    public int hashCode(){
-//        return tripName.length();//for simplicity reason
-//    }
-
     public Long getId() {
         return id;
     }
@@ -96,14 +65,6 @@ public class Trip {
     public void setId(Long id) {
         this.id = id;
     }
-
-//    public User getUser() {
-//        return user;
-//    }
-//
-//    public void setUser(User user) {
-//        this.user = user;
-//    }
 
     public String getTripName() {
         return tripName;
@@ -145,22 +106,6 @@ public class Trip {
         this.country = country;
     }
 
-    //    public Date getDateFrom() {
-//        return dateFrom;
-//    }
-//
-//    public void setDateFrom(Date dateFrom) {
-//        this.dateFrom = dateFrom;
-//    }
-//
-//    public Date getDateTo() {
-//        return dateTo;
-//    }
-//
-//    public void setDateTo(Date dateTo) {
-//        this.dateTo = dateTo;
-//    }
-
     public String getImpression() {
         return impression;
     }
@@ -168,14 +113,6 @@ public class Trip {
     public void setImpression(String impression) {
         this.impression = impression;
     }
-
-//    public Set<Photo> getPhotos() {
-//        return photos;
-//    }
-//
-//    public void setPhotos(Set<Photo> photos) {
-//        this.photos = photos;
-//    }
 
     public Location getLocation() {
         return location;

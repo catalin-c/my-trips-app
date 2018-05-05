@@ -32,91 +32,60 @@
     </div>
 </nav>
 
-<div class="d-flex align-items-center flex-column justify-content-center h-100 bg-dark text-white" id="header" >
+<div class="d-flex align-items-center flex-column justify-content-center h-100 bg-dark text-white" id="header">
     <h3 class="display-4">Register.</h3>
     <form action="#" class="form-signin">
         <div class="form-group">
             <label for="firstName">First Name</label>
-            <input id="firstName" class="form-control" placeholder="First Name.." type="text">
+            <input id="firstName" class="form-control" placeholder="First Name.." type="text" data-validation="custom"
+                   data-validation-regexp="^[a-zA-Z ,.'-]+$" data-validation-error-msg="Invalid first name."
+                   maxlength="20">
         </div>
         <div class="form-group">
             <label for="lastName">Last Name</label>
-            <input id="lastName" placeholder="Last Name.." class="form-control" type="text">
+            <input id="lastName" placeholder="Last Name.." class="form-control" type="text" data-validation="custom"
+                   data-validation-regexp="^[a-zA-Z ,.'-]+$" data-validation-error-msg="Invalid last name."
+                   maxlength="20">
         </div>
         <div class="form-group">
             <label for="email">Email</label>
-            <input id="email" placeholder="Email.." class="form-control" type="text" data-validation="email" data-validation-error-msg="Invalid email.">
+            <input id="email" placeholder="Email.." class="form-control" name="email" type="email" data-validation="email server"
+                   data-validation-url="/email-validator">
         </div>
-        <div class="form-group">
+        <div class=" form-group">
             <label for="password">Password:</label>
             <input id="password" class="form-control" placeholder="Password.." type="password" name="pass_confirmation"
-                   data-validation="strength"
-                   data-validation-strength="2">
+                   data-validation="custom" data-validation-regexp="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
+                   data-validation-error-msg="Minimum eight characters, at least one letter and one number.">
         </div>
         <div class="form-group">
             <label for="city">City</label>
-            <input id="city" class="form-control" placeholder="City.." type="text">
+            <input id="city" class="form-control" placeholder="City.." type="text" data-validation="custom"
+                   data-validation-regexp="^([a-zA-Z0-9]+)$" data-validation-error-msg="Invalid city name.">
         </div>
         <div class="form-group">
             <label for="address">Address</label>
-            <input id="address" class="form-control" placeholder="Address.." type="text">
+            <input id="address" class="form-control" placeholder="Address.." type="text" data-validation="length"
+                   data-validation-length="min5" data-validation-error-msg="Invalid address.">
         </div>
         <div class="form-group">
             <label for="phone">Phone Number</label>
-            <input id="phone" class="form-control" placeholder="Phone Number.." type="text">
+            <input id="phone" class="form-control" placeholder="Phone Number.." type="text"
+                   data-validation="custom" data-validation-regexp="^([0-9 +]+)$"
+                   data-validation-error-msg="Invalid phone number.">
         </div>
         <div class="form-group">
-            <button id="register" type="button" class="btn btn-info btn-lg btn-block">Register</button>
+            <button id="register" type="submit" class="btn btn-info btn-lg btn-block">Register</button>
         </div>
     </form>
 </div>
 
-
-<!--<div class="d-flex align-items-center flex-column justify-content-center h-100 bg-dark text-white" id="header" >-->
-    <!--<h3 class="display-4">Register.</h3>-->
-    <!--<form action="#" class="form-signin">-->
-        <!--<div class="form-group">-->
-            <!--<label for="firstName">First Name</label>-->
-            <!--<input id="firstName" class="form-control" placeholder="First Name.." type="text">-->
-        <!--</div>-->
-        <!--<div class="form-group">-->
-            <!--<label for="lastName">Last Name</label>-->
-            <!--<input id="lastName" placeholder="Last Name.." class="form-control" type="text">-->
-        <!--</div>-->
-        <!--<div class="form-group">-->
-            <!--<label for="email">Email</label>-->
-            <!--<input id="email" placeholder="Email.." class="form-control" type="text" data-validation="email" data-validation-error-msg="Invalid email.">-->
-        <!--</div>-->
-        <!--<div class="form-group">-->
-            <!--<label for="password">Password:</label>-->
-            <!--<input id="password" class="form-control" placeholder="Password.." type="password" name="pass_confirmation"-->
-                   <!--data-validation="strength"-->
-                   <!--data-validation-strength="2">-->
-        <!--</div>-->
-        <!--<div class="form-group">-->
-            <!--<label for="city">City</label>-->
-            <!--<input id="city" class="form-control" placeholder="City.." type="text">-->
-        <!--</div>-->
-        <!--<div class="form-group">-->
-            <!--<label for="address">Address</label>-->
-            <!--<input id="address" class="form-control" placeholder="Address.." type="text">-->
-        <!--</div>-->
-        <!--<div class="form-group">-->
-            <!--<label for="phone">Phone Number</label>-->
-            <!--<input id="phone" class="form-control" placeholder="Phone Number.." type="text">-->
-        <!--</div>-->
-        <!--<div class="form-group">-->
-            <!--<button id="register" type="button" class="btn btn-info btn-lg btn-block">Register</button>-->
-        <!--</div>-->
-    <!--</form>-->
-<!--</div>-->
-
 <script type="text/javascript" th:src="@{/plugins/jquery-3.3.1.min.js}"></script>
 <script type="text/javascript" th:src="@{/plugins/bootstrap.min.js}"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
 <script type="text/javascript" th:src="@{/scripts/registerajax.js}"></script>
 <!--<script type="text/javascript" th:src="@{/scripts/validation/register-validator.js}"></script>-->
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
-<script type="text/javascript" th:src="@{/scripts/validation/register-validator.js}"></script>
+
 
 </body>
 </html>
