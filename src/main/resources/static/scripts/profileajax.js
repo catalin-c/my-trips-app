@@ -9,7 +9,65 @@ $(document).ready(function () {
             // alert('Validation of form failed!');
         },
         onSuccess: function () {
-            alert("Succes!");
+            var firstName = $("#firstName").val();
+            var lastName = $("#lastName").val();
+            var email = $("#email").val();
+            var city = $("#city").val();
+            var address = $("#address").val();
+            var phone = $("#phone").val();
+            var password = $("#password").val();
+
+            var userDetails = {};
+            // userDetails['id'] = currentTripId;
+
+            if (!firstName == "") {
+                userDetails['firstName'] = firstName;
+            }
+
+            if (!lastName == "") {
+                userDetails['lastName'] = lastName;
+            }
+
+            if (!email == "") {
+                userDetails['email'] = lastName;
+            }
+
+            if (!city == "") {
+                userDetails['city'] = city;
+            }
+
+            if (!phone == "") {
+                userDetails['phone'] = phone;
+            }
+
+            if (!address == "") {
+                userDetails['address'] = address;
+            }
+
+            if (!password == "") {
+                userDetails['passwordHash'] = password;
+            }
+
+            if (firstName == "" && lastName == "" && email == "" && city == "" && address == "" && phone == "" && password == ""){
+                alert("Please fill at least one field!");
+            }else{
+
+                $.ajax({
+                    type: "PATCH",
+                    url: "http://localhost:7070/updateProfile?id=" + userId,
+                    // The key needs to match your method's input parameter (case-sensitive).
+                    data: JSON.stringify(userDetails),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function(data){
+
+                        location.reload(true);
+                    },
+                    failure: function(errMsg) {
+
+                    }
+                });
+            }
             return false;
         }
     });
@@ -36,68 +94,10 @@ $(document).ready(function () {
         }
     });
 
-    // $("#editProfile").click(function() {
-    //
-    //     var firstName = $("#firstName").val();
-    //     var lastName = $("#lastName").val();
-    //     var email = $("#email").val();
-    //     var city = $("#city").val();
-    //     var address = $("#address").val();
-    //     var phone = $("#phone").val();
-    //     var password = $("#password").val();
-    //
-    //     var userDetails = {};
-    //     // userDetails['id'] = currentTripId;
-    //
-    //     if (!firstName == "") {
-    //         userDetails['firstName'] = firstName;
-    //     }
-    //
-    //     if (!lastName == "") {
-    //         userDetails['lastName'] = lastName;
-    //     }
-    //
-    //     if (!email == "") {
-    //         userDetails['email'] = lastName;
-    //     }
-    //
-    //     if (!city == "") {
-    //         userDetails['city'] = city;
-    //     }
-    //
-    //     if (!phone == "") {
-    //         userDetails['phone'] = phone;
-    //     }
-    //
-    //     if (!address == "") {
-    //         userDetails['address'] = address;
-    //     }
-    //
-    //     if (!password == "") {
-    //         userDetails['passwordHash'] = password;
-    //     }
-    //
-    //     if (firstName == "" && lastName == "" && email == "" && city == "" && address == "" && phone == "" && password == ""){
-    //         alert("Please fill at least one field!");
-    //     }else{
-    //
-    //         $.ajax({
-    //             type: "PATCH",
-    //             url: "http://localhost:7070/updateProfile?id=" + userId,
-    //             // The key needs to match your method's input parameter (case-sensitive).
-    //             data: JSON.stringify(userDetails),
-    //             contentType: "application/json; charset=utf-8",
-    //             dataType: "json",
-    //             success: function(data){
-    //
-    //                 location.reload(true);
-    //             },
-    //             failure: function(errMsg) {
-    //
-    //             }
-    //         });
-    //     }
-    //
-    // });
+    $("#editProfile").click(function() {
+
+
+
+    });
 
 });
