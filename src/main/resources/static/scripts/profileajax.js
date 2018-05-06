@@ -47,6 +47,9 @@ $(document).ready(function () {
             if (!password == "") {
                 userDetails['passwordHash'] = password;
             }
+            if (firstName == "" && lastName == "" && email == "" && city == "" && address == "" && phone == "" && password == ""){
+                alert("Please fill at least one field!");
+            }else {
                 $.ajax({
                     type: "PATCH",
                     url: "http://localhost:7070/updateProfile?id=" + userId,
@@ -54,14 +57,15 @@ $(document).ready(function () {
                     data: JSON.stringify(userDetails),
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
-                    success: function(data){
+                    success: function (data) {
 
                         location.reload(true);
                     },
-                    failure: function(errMsg) {
+                    failure: function (errMsg) {
 
                     }
                 });
+            }
             return false;
         }
     });

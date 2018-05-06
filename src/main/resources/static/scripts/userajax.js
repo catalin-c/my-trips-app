@@ -175,28 +175,33 @@ $(document).ready(function () {
                     url: "https://maps.googleapis.com/maps/api/geocode/json?address=" + cityName + "+" + countryName +
                     "&key=AIzaSyDL3OcNBWkphg7AdM5AZEPN-MU8c2r68Nw",
                     success: function (mapCoordinates) {
-                        tripDetails['latitude'] = mapCoordinates['results'][0]['geometry']['location']['lat'];
-                        tripDetails['longitude'] = mapCoordinates['results'][0]['geometry']['location']['lng'];
+                        if (mapCoordinates['status'] !== 'OK') {
+                            alert("Please enter a valid country/state and/or city!");
+                        } else {
+                            tripDetails['latitude'] = mapCoordinates['results'][0]['geometry']['location']['lat'];
+                            tripDetails['longitude'] = mapCoordinates['results'][0]['geometry']['location']['lng'];
 
-                        $.ajax({
-                            type: "POST",
-                            url: "/addTrip",
-                            // The key needs to match your method's input parameter (case-sensitive).
-                            data: JSON.stringify(tripDetails),
-                            contentType: "application/json; charset=utf-8",
-                            dataType: "json",
-                            success: function (data) {
-                                $("#addTripDiv").css("display", "none");
-                                location.reload(true);
-                            },
-                            failure: function (errMsg) {
-                                alert(errMsg);
-                            }
-                        });
+                            $.ajax({
+                                type: "POST",
+                                url: "/addTrip",
+                                // The key needs to match your method's input parameter (case-sensitive).
+                                data: JSON.stringify(tripDetails),
+                                contentType: "application/json; charset=utf-8",
+                                dataType: "json",
+                                success: function (data) {
+                                    $("#addTripDiv").css("display", "none");
+                                    location.reload(true);
+                                },
+                                failure: function (errMsg) {
+                                    alert(errMsg);
+                                }
+                            });
+                        }
+
                     },
 
                     error: function (request) {
-                        alert("Please enter a valid country/state and/or city!")
+                        alert("Please enter a valid country/state and/or city!");
                     }
                 });
             }
@@ -235,44 +240,47 @@ $(document).ready(function () {
         $(this).parent().parent().hide();
     });
 
-    $("#editSendTrip").click(function () {
-        var editTripName = $("#editTripName").val();
-        var editDatePickerFrom = $("#editDatePickerFrom").val();
-        var editDatePickerTo = $("#editDatePickerTo").val();
-        var editTripImpressions = $("#editTripImpressions").val();
-        var editCountryName = $("#editCountryName").val();
-        var editCityName = $("#editCityName").val();
+    $.validate({
+        form: '#editTripForm',
+        onError: function () {
+            // alert('Validation of form failed!');
+        },
+        onSuccess: function () {
+            var editTripName = $("#editTripName").val();
+            var editDatePickerFrom = $("#editDatePickerFrom").val();
+            var editDatePickerTo = $("#editDatePickerTo").val();
+            var editTripImpressions = $("#editTripImpressions").val();
+            var editCountryName = $("#editCountryName").val();
+            var editCityName = $("#editCityName").val();
 
-        var editDetails = {};
-        // editDetails['id'] = currentTripId;
+            var editDetails = {};
+            // editDetails['id'] = currentTripId;
 
-        if (!editTripName == "") {
-            editDetails['tripName'] = editTripName;
-        }
+            if (!editTripName == "") {
+                editDetails['tripName'] = editTripName;
+            }
 
-        if (!editDatePickerFrom == "") {
-            editDetails['dateFrom'] = editDatePickerFrom;
-        }
+            if (!editDatePickerFrom == "") {
+                editDetails['dateFrom'] = editDatePickerFrom;
+            }
 
-        if (!editDatePickerTo == "") {
-            editDetails['dateFrom'] = editDatePickerFrom;
-        }
+            if (!editDatePickerTo == "") {
+                editDetails['dateFrom'] = editDatePickerFrom;
+            }
 
-        if (!editTripImpressions == "") {
-            editDetails['impression'] = editTripImpressions;
-        }
+            if (!editTripImpressions == "") {
+                editDetails['impression'] = editTripImpressions;
+            }
 
-        if (!editCityName == "") {
-            editDetails['country'] = editCityName;
-        }
+            if (!editCityName == "") {
+                editDetails['country'] = editCityName;
+            }
 
-        if (!editCountryName == "") {
-            editDetails['city'] = editCountryName;
-        }
+            if (!editCountryName == "") {
+                editDetails['city'] = editCountryName;
+            }
 
-        if (editTripName == "" && editDatePickerFrom == "" && editDatePickerTo == "" && editTripImpressions == "" && editCountryName == "" && editCityName == "") {
-            alert("Please fill at least one field!");
-        } else {
+
             $.ajax({
                 type: "PATCH",
                 url: "http://localhost:7070/updateTrip?tripName=" + encodeURIComponent($("#tripSelect :selected").text().trim()),
@@ -288,9 +296,7 @@ $(document).ready(function () {
                     alert(errMsg);
                 }
             });
+
         }
-
     });
-
-
 });
