@@ -3,9 +3,10 @@ $(document).ready(function () {
     var userId = $("#currentUserId").text();
     var currentTripId = 0;
 
-    //Load trip names and populate Trip Select Dropdown
+    // Load trip names and populate Trip Select Dropdown
     $.ajax({
-        type: "get", url: "/getTrips/" + userId,
+        type: "get",
+        url: "/getTrips/" + userId,
         success: function (tripNames) {
             $.each(tripNames, function (val, text) {
                 $('#tripSelect').append($('<option></option>').val(val).html(text))
@@ -25,7 +26,7 @@ $(document).ready(function () {
     });
 
 
-    // Populate trip selector + impressions + dates
+    // Populate map + impressions + dates
     function populatePageFirstPart(sParameter) {
         $.ajax({
             type: "get", url: "/trip?tripName=" + sParameter,
@@ -37,14 +38,9 @@ $(document).ready(function () {
                 populatePageSecondPart(result['id']);
 
             },
-
             error: function (request) {
                 $("#impressionsText").text("Error loading impressions");
                 $("#datesText").text("Error loading dates");
-
-                // $("#impressionsText").addClass(".hide");
-                // $("#datesText").addClass(".hide");
-                // $(".googleMap").addClass(".hide");
             }
         });
     }
@@ -59,13 +55,8 @@ $(document).ready(function () {
                 }
             },
 
-            error: function (resultTwo) {
-                $("#impressionsText").text("Error loading impressions");
-                $("#datesText").text("Error loading dates");
-
-                // $("#impressionsText").addClass(".hide");
-                // $("#datesText").addClass(".hide");
-                // $(".googleMap").addClass(".hide");
+            error: function (error) {
+                alert("The photos couldn't be loaded!");
             }
         });
     }
@@ -105,9 +96,6 @@ $(document).ready(function () {
 
     $.validate({
         form: '#addPhotoForm',
-        onError: function () {
-            // alert('Validation of form failed!');
-        },
         onSuccess: function () {
             var photoName = $("#photoName").val();
             var photoLink = $("#photoLink").val();
@@ -117,7 +105,6 @@ $(document).ready(function () {
             $.ajax({
                 type: "POST",
                 url: "/addPhoto",
-                // The key needs to match your method's input parameter (case-sensitive).
                 data: JSON.stringify(photoDetails),
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
@@ -130,15 +117,11 @@ $(document).ready(function () {
             });
             return false;
         }
-
-
     });
-
 
     //Add trip date pickers
     $("#datePickerFrom").datepicker({dateFormat: 'd M yy'});
     $("#datePickerTo").datepicker({dateFormat: 'd M yy'});
-
 
     //Add Trip Form
     $("#addTrip").click(function () {
@@ -150,9 +133,6 @@ $(document).ready(function () {
 
     $.validate({
         form: '#addTripForm',
-        onError: function () {
-            // alert('Validation of form failed!');
-        },
         onSuccess: function () {
             var tripName = $("#tripName").val();
             var datePickerFrom = $("#datePickerFrom").val();
@@ -184,7 +164,6 @@ $(document).ready(function () {
                             $.ajax({
                                 type: "POST",
                                 url: "/addTrip",
-                                // The key needs to match your method's input parameter (case-sensitive).
                                 data: JSON.stringify(tripDetails),
                                 contentType: "application/json; charset=utf-8",
                                 dataType: "json",
@@ -197,10 +176,8 @@ $(document).ready(function () {
                                 }
                             });
                         }
-
                     },
-
-                    error: function (request) {
+                    error: function (error) {
                         alert("Please enter a valid country/state and/or city!");
                     }
                 });
@@ -212,7 +189,6 @@ $(document).ready(function () {
     //Edit trip date pickers
     $("#editDatePickerFrom").datepicker({dateFormat: 'd M yy'});
     $("#editDatePickerTo").datepicker({dateFormat: 'd M yy'});
-
 
     //Edit Trip Form
     $("#editTrip").click(function () {
@@ -228,23 +204,25 @@ $(document).ready(function () {
 
                 $("#editTripDiv").css("display", "block");
             },
-
-            error: function (request) {
-                // $("#impressionsText").text("Error loading impressions");
-                // $("#datesText").text("Error loading dates");
+            error: function (error) {
+                $("#editTripName").attr("placeholder", "Error Loading..");
+                $("#editDatePickerFrom").attr("placeholder", "Error Loading..");
+                $("#editDatePickerTo").attr("placeholder", "Error Loading..");
+                $("#editTripImpressions").attr("placeholder", "Error Loading..");
+                $("#editCityName").attr("placeholder", "Error Loading..");
+                $("#editCountryName").attr("placeholder", "Error Loading..");
+                $("#editTripDiv").css("display", "block");
+                console.log(error);
             }
         });
-
     });
+
     $("#editTripForm #editCancelTrip").click(function () {
         $(this).parent().parent().hide();
     });
 
     $.validate({
         form: '#editTripForm',
-        onError: function () {
-            // alert('Validation of form failed!');
-        },
         onSuccess: function () {
             var editTripName = $("#editTripName").val();
             var editDatePickerFrom = $("#editDatePickerFrom").val();
@@ -254,7 +232,6 @@ $(document).ready(function () {
             var editCityName = $("#editCityName").val();
 
             var editDetails = {};
-            // editDetails['id'] = currentTripId;
 
             if (!editTripName == "") {
                 editDetails['tripName'] = editTripName;
@@ -280,11 +257,9 @@ $(document).ready(function () {
                 editDetails['city'] = editCountryName;
             }
 
-
             $.ajax({
                 type: "PATCH",
                 url: "http://localhost:7070/updateTrip?tripName=" + encodeURIComponent($("#tripSelect :selected").text().trim()),
-                // The key needs to match your method's input parameter (case-sensitive).
                 data: JSON.stringify(editDetails),
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
@@ -293,10 +268,9 @@ $(document).ready(function () {
                     location.reload(true);
                 },
                 failure: function (errMsg) {
-                    alert(errMsg);
+                    alert("Error Updating Trip");
                 }
             });
-
         }
     });
 });
