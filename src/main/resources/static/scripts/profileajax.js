@@ -47,11 +47,6 @@ $(document).ready(function () {
             if (!password == "") {
                 userDetails['passwordHash'] = password;
             }
-
-            if (firstName == "" && lastName == "" && email == "" && city == "" && address == "" && phone == "" && password == ""){
-                alert("Please fill at least one field!");
-            }else{
-
                 $.ajax({
                     type: "PATCH",
                     url: "http://localhost:7070/updateProfile?id=" + userId,
@@ -67,7 +62,6 @@ $(document).ready(function () {
 
                     }
                 });
-            }
             return false;
         }
     });

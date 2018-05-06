@@ -4,6 +4,8 @@
 
     <meta charset="UTF-8">
     <title>My Trips</title>
+    <link href="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/theme-default.min.css"
+          rel="stylesheet" type="text/css"/>
     <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
     <link th:href="@{/css/userstyle.css}" rel="stylesheet" type="text/css"/>
 
@@ -14,7 +16,8 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -76,7 +79,7 @@
 
     <div class="row userrow">
         <div class="col-md-4 googleMap">
-            <div  id="map"></div>
+            <div id="map"></div>
             <p id="datesText"></p>
         </div>
 
@@ -89,17 +92,20 @@
     <form class="form" action="#" id="addPhotoForm">
 
         <h3 class="formTitle">Add Trip Photo</h3>
-        <hr/><br/>
+        <hr/>
+        <br/>
         <label>Photo Name: <span>*</span></label>
         <br/>
-        <input type="text" class="formInput" id="photoName" placeholder="Photo Name"/><br/>
+        <input type="text" class="formInput" id="photoName" placeholder="Photo Name" data-validation="length"
+               data-validation-length="min1" data-validation-error-msg="Photo name can't be empty."/><br/>
         <br/>
         <label>Photo Link: <span>*</span></label>
         <br/>
-        <input type="text" class="formInput" id="photoLink" placeholder="Photo Link"/><br/>
+        <input type="text" class="formInput" id="photoLink" placeholder="Photo Link" data-validation="length"
+               data-validation-length="min1" data-validation-error-msg="Photo Link name can't be empty."/><br/>
         <br/>
 
-        <input type="button" class="formInput" id="sendPhoto" value="Send"/>
+        <input type="submit" class="formInput" id="sendPhoto" value="Send"/>
         <input type="button" class="formInput" id="cancelPhoto" value="Cancel"/>
         <br/>
     </form>
@@ -110,39 +116,47 @@
     <form class="form" action="#" id="addTripForm">
 
         <h3 class="formTitle">New Trip Details</h3>
-        <hr/><br/>
+        <hr/>
+        <br/>
         <label for="tripName">Trip Name: <span>*</span></label>
         <br/>
-        <input type="text" class="formInput" id="tripName" placeholder="Trip Name"/><br/>
+        <input type="text" class="formInput" id="tripName" placeholder="Trip Name" data-validation="length"
+               data-validation-length="min1" data-validation-error-msg="Trip name can't be empty."/><br/>
         <br/>
 
         <label for="datePickerFrom">Date From: <span>*</span></label>
         <br/>
-        <input type="text" class="formInput" id="datePickerFrom" placeholder="Date From"/><br/>
+        <input type="text" class="formInput" id="datePickerFrom" placeholder="Date From"
+               data-validation="length" data-validation-length="min1"
+               data-validation-error-msg="Date From field can't be empty."/><br/>
         <br/>
 
         <label for="datePickerTo">Date To: <span>*</span></label>
         <br/>
-        <input type="text" class="formInput" id="datePickerTo" placeholder="Date To"/><br/>
+        <input type="text" class="formInput" id="datePickerTo" placeholder="Date To" data-validation="length"
+               data-validation-length="min1" data-validation-error-msg="Date To field can't be empty."/><br/>
         <br/>
 
         <label for="tripImpressions">Impressions: <span>*</span></label>
         <br/>
-        <textarea id="tripImpressions" placeholder="Impressions..."></textarea><br/>
+        <textarea id="tripImpressions" placeholder="Impressions..." data-validation="length"
+                  data-validation-length="min1" data-validation-error-msg="Impressions field can't be empty."></textarea><br/>
         <br/>
 
         <label for="cityName">City Name: <span>*</span></label>
         <br/>
-        <input type="text" class="formInput" id="cityName" placeholder="City Name"/><br/>
+        <input type="text" class="formInput" id="cityName" placeholder="City Name" data-validation="custom"
+               data-validation-regexp="^([a-zA-Z0-9]+)$" data-validation-error-msg="Invalid city name."/><br/>
         <br/>
 
         <label for="countryName">Country Name: <span>*</span></label>
         <br/>
-        <input type="text" class="formInput" id="countryName" placeholder="Country/State Name"/><br/>
+        <input type="text" class="formInput" id="countryName" placeholder="Country/State Name" data-validation="custom"
+               data-validation-regexp="^([a-zA-Z0-9]+)$" data-validation-error-msg="Invalid country name."/><br/>
         <br/>
 
 
-        <input type="button" class="formInput" id="sendTrip" value="Send"/>
+        <input type="submit" class="formInput" id="sendTrip" value="Send"/>
         <input type="button" class="formInput" id="cancelTrip" value="Cancel"/>
         <br/>
     </form>
@@ -152,7 +166,8 @@
     <form class="form" action="#" id="editTripForm">
 
         <h3 class="formTitle">Edit Trip</h3>
-        <hr/><br/>
+        <hr/>
+        <br/>
         <label for="tripName">Trip Name: </label>
         <br/>
         <input type="text" class="formInput" id="editTripName"/><br/>
@@ -170,12 +185,12 @@
 
         <label for="tripImpressions">Impressions: </label>
         <br/>
-        <textarea id="editTripImpressions" ></textarea><br/>
+        <textarea id="editTripImpressions"></textarea><br/>
         <br/>
 
         <label for="cityName">City Name: </label>
         <br/>
-        <input type="text" class="formInput" id="editCityName" /><br/>
+        <input type="text" class="formInput" id="editCityName"/><br/>
         <br/>
 
         <label for="countryName">Country Name: </label>
@@ -195,9 +210,11 @@
 <script type="text/javascript" th:src="@{/scripts/googlemap.js}"></script>
 <script type="text/javascript" th:src="@{/plugins/popper.min.js}"></script>
 <script type="text/javascript" th:src="@{/plugins/jquery-3.3.1.min.js}"></script>
-<script type="text/javascript" th:src="@{/plugins/bootstrap.min.js}" ></script>
-<script type="text/javascript" th:src="@{/scripts/userajax.js}" ></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDL3OcNBWkphg7AdM5AZEPN-MU8c2r68Nw&callback=initMap" async defer></script>
+<script type="text/javascript" th:src="@{/plugins/bootstrap.min.js}"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>
+<script type="text/javascript" th:src="@{/scripts/userajax.js}"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDL3OcNBWkphg7AdM5AZEPN-MU8c2r68Nw&callback=initMap" async
+        defer></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 </body>

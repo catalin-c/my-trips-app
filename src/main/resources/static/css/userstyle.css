@@ -1,6 +1,6 @@
 body,html {
     height: 100%;
-    overflow: hidden;
+    /*overflow: hidden;*/
 }
 
 #tripSelectLabel {
@@ -90,6 +90,16 @@ b{
 }
 
 input[type=button]{
+    background-color:#123456;
+    border:1px solid white;
+    font-family: 'Fauna One', serif;
+    font-Weight:bold;
+    font-size:18px;
+    color:white;
+    width:49%;
+}
+
+input[type=submit] {
     background-color:#123456;
     border:1px solid white;
     font-family: 'Fauna One', serif;
