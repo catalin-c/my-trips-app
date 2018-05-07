@@ -12,6 +12,7 @@ $(document).ready(function () {
                 $('#tripSelect').append($('<option></option>').val(val).html(text))
             });
 
+
             populatePageFirstPart(encodeURIComponent($("#tripSelect :selected").text().trim()));
         },
 
@@ -19,9 +20,9 @@ $(document).ready(function () {
             $("#impressionsText").text("Error loading impressions");
             $("#datesText").text("Error loading dates");
 
-            // $("#impressionsText").addClass(".hide");
-            // $("#datesText").addClass(".hide");
-            // $(".googleMap").addClass(".hide");
+            $("#impressionsText").hide();
+            $("#datesText").hide();
+            $(".googleMap").hide();
         }
     });
 

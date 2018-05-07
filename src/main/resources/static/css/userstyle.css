@@ -1,6 +1,5 @@
 body,html {
     height: 100%;
-    /*overflow: hidden;*/
 }
 
 #tripSelectLabel {
@@ -90,6 +89,8 @@ b{
     padding:5px;
 }
 
+
+
 input[type=button]{
     background-color:#123456;
     border:1px solid white;
@@ -99,6 +100,9 @@ input[type=button]{
     color:white;
     width:49%;
 }
+
+
+
 
 input[type=submit] {
     background-color:#123456;
