@@ -133,6 +133,7 @@ $(document).ready(function () {
 
     $.validate({
         form: '#addTripForm',
+        modules: 'security',
         onSuccess: function () {
             var tripName = $("#tripName").val();
             var datePickerFrom = $("#datePickerFrom").val();

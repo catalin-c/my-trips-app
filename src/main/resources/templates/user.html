@@ -118,8 +118,8 @@
         <br/>
         <label for="tripName">Trip Name: <span>*</span></label>
         <br/>
-        <input type="text" class="formInput" id="tripName" placeholder="Trip Name" data-validation="length"
-               data-validation-length="min1" data-validation-error-msg="Trip name can't be empty."/><br/>
+        <input type="text" class="formInput" id="tripName" name="tripName" placeholder="Trip Name"
+               data-validation="server" data-validation-url="/trip-validator"/><br/>
         <br/>
 
         <label for="datePickerFrom">Date From: <span>*</span></label>

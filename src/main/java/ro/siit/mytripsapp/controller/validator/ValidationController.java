@@ -26,4 +26,18 @@ public class ValidationController {
 
         return new JsonResponse(true, "This email is available.");
     }
+
+    @RequestMapping(value = "/trip-validator", method = RequestMethod.POST, produces = "application/json")
+    public JsonResponse validateTrip(@RequestParam String tripName) {
+
+        int count = jdbcTemplate.queryForObject("SELECT COUNT(trip_name) from mytripapp.trip WHERE trip_name=?", Integer.class, tripName);
+
+        if (count == 1) {
+            return new JsonResponse(false, "This trip name is already taken.");
+        }
+
+        return new JsonResponse(true, "This trip name is available.");
+    }
+
+
 }
