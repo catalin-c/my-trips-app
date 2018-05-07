@@ -5,6 +5,7 @@ $(document).ready(function () {
 
     $.validate({
         modules: 'security',
+        form: '#editProfile',
         onError: function () {
             // alert('Validation of form failed!');
         },

@@ -250,28 +250,50 @@ $(document).ready(function () {
                 editDetails['impression'] = editTripImpressions;
             }
 
-            if (!editCityName == "") {
-                editDetails['country'] = editCityName;
-            }
 
-            if (!editCountryName == "") {
+            if (!editCityName == "" && editCountryName == "") {
+                alert("You need to enter both City Name and Country Name!");
+                return false;
+            }else if (editCityName == "" && !editCountryName == "") {
+                alert("You need to enter both City Name and Country Name!");
+                return false;
+            } else if(!editCityName == "" && !editCountryName == ""){
+                editDetails['country'] = editCityName;
                 editDetails['city'] = editCountryName;
             }
 
+
+            // Google Maps Validation
             $.ajax({
-                type: "PATCH",
-                url: "http://localhost:7070/updateTrip?tripName=" + encodeURIComponent($("#tripSelect :selected").text().trim()),
-                data: JSON.stringify(editDetails),
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function (data) {
-                    $("#addTripDiv").css("display", "none");
-                    location.reload(true);
+                type: "get",
+                url: "https://maps.googleapis.com/maps/api/geocode/json?address=" + editCityName + "+" + editCountryName +
+                "&key=AIzaSyDL3OcNBWkphg7AdM5AZEPN-MU8c2r68Nw",
+                success: function (mapCoordinates) {
+                    if (mapCoordinates['status'] !== 'OK') {
+                        alert("Please enter a valid country/state and/or city!");
+                    } else {
+                        editDetails['latitude'] = mapCoordinates['results'][0]['geometry']['location']['lat'];
+                        editDetails['longitude'] = mapCoordinates['results'][0]['geometry']['location']['lng'];
+                        $.ajax({
+                            type: "PATCH",
+                            url: "http://localhost:7070/updateTrip?tripName=" + encodeURIComponent($("#tripSelect :selected").text().trim()),
+                            data: JSON.stringify(editDetails),
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            success: function (data) {
+                                $("#addTripDiv").css("display", "none");
+                                location.reload(true);
+                            },
+                            failure: function (errMsg) {
+                                alert("Error Updating Trip");
+                            }
+                        });
+                    }
                 },
-                failure: function (errMsg) {
-                    alert("Error Updating Trip");
+                error: function (error) {
                 }
             });
+            return false;
         }
     });
 });

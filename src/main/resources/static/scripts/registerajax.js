@@ -42,8 +42,6 @@ $(document).ready(function () {
                     alert("Error creating new account!");
                 }
             });
-
-
             return false; // Will stop the submission of the form
         }
     });
