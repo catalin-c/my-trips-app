@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Welcome</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <!--<link href="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/theme-default.min.css"-->
+          <!--rel="stylesheet" type="text/css"/>-->
+    <!--<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>-->
+    <!--<link th:href="@{/css/userstyle.css}" rel="stylesheet" type="text/css"/>-->
+    <link th:href="@{/css/welcomestyle.css}" rel="stylesheet" type="text/css"/>
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
+</head>
+<body>
+
+<div class="wrapper">
+    <button class="button" id="addTrip">Add Trip</button>
+</div>
+
+<div id="addTripDiv">
+    <form class="form" action="#" id="addTripForm">
+
+        <h3 class="formTitle">New Trip Details</h3>
+        <hr/>
+        <br/>
+        <label for="tripName">Trip Name: <span>*</span></label>
+        <br/>
+        <input type="text" class="formInput" id="tripName" name="tripName" placeholder="Trip Name"
+               data-validation="server" data-validation-url="/trip-validator"/><br/>
+        <br/>
+
+        <label for="datePickerFrom">Date From: <span>*</span></label>
+        <br/>
+        <input type="text" class="formInput" id="datePickerFrom" placeholder="Date From"
+               data-validation="length" data-validation-length="min1"
+               data-validation-error-msg="Date From field can't be empty."/><br/>
+        <br/>
+
+        <label for="datePickerTo">Date To: <span>*</span></label>
+        <br/>
+        <input type="text" class="formInput" id="datePickerTo" placeholder="Date To" data-validation="length"
+               data-validation-length="min1" data-validation-error-msg="Date To field can't be empty."/><br/>
+        <br/>
+
+        <label for="tripImpressions">Impressions: <span>*</span></label>
+        <br/>
+        <textarea id="tripImpressions" placeholder="Impressions..." data-validation="length"
+                  data-validation-length="min1" data-validation-error-msg="Impressions field can't be empty."></textarea><br/>
+        <br/>
+
+        <label for="cityName">City Name: <span>*</span></label>
+        <br/>
+        <input type="text" class="formInput" id="cityName" placeholder="City Name" data-validation="custom"
+               data-validation-regexp="^([a-zA-Z0-9]+)$" data-validation-error-msg="Invalid city name."/><br/>
+        <br/>
+
+        <label for="countryName">Country Name: <span>*</span></label>
+        <br/>
+        <input type="text" class="formInput" id="countryName" placeholder="Country/State Name" data-validation="custom"
+               data-validation-regexp="^([a-zA-Z0-9]+)$" data-validation-error-msg="Invalid country name."/><br/>
+        <br/>
+
+
+        <input type="submit" class="formInput" id="sendTrip" value="Add Trip"/>
+        <input type="button" class="formInput" id="cancelTrip" value="Cancel"/>
+        <br/>
+    </form>
+</div>
+
+
+
+<p id="currentUserId" th:text="${currentUser.getId()}"></p>
+
+<!--<script type="text/javascript" th:src="@{/scripts/googlemap.js}"></script>-->
+<!--<script type="text/javascript" th:src="@{/plugins/popper.min.js}"></script>-->
+<!--<script type="text/javascript" th:src="@{/plugins/jquery-3.3.1.min.js}"></script>-->
+<!--<script type="text/javascript" th:src="@{/plugins/bootstrap.min.js}"></script>-->
+<!--<script src="//cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.3.26/jquery.form-validator.min.js"></script>-->
+<!--<script type="text/javascript" th:src="@{/scripts/userajax.js}"></script>-->
+<!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDL3OcNBWkphg7AdM5AZEPN-MU8c2r68Nw&callback=initMap" async-->
+        <!--defer></script>-->
+<!--<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>-->
+
+</body>
+</html>

@@ -1,0 +1,114 @@
+body {
+    background: url("../img/bg.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+#currentUserId {
+    display: none;
+}
+
+.formTitle{
+    font-size:18px;
+    text-align:center;
+    text-shadow:1px 0px 3px gray;
+}
+
+b{
+    font-size:18px;
+    text-shadow:1px 0px 3px gray;
+}
+
+.form{
+    border-radius:2px;
+    padding:20px 30px;
+    box-shadow:0 0 15px;
+    font-size:14px;
+    font-weight:bold;
+    width:350px;
+    margin:20px 250px 0 35px;
+    float:left;
+}
+
+.formInput{
+    width:100%;
+    height:35px;
+    margin-top:5px;
+    border:1px solid #999;
+    border-radius:3px;
+    padding:5px;
+}
+
+input[type=button]{
+    background-color:#123456;
+    border:1px solid white;
+    font-family: 'Fauna One', serif;
+    font-Weight:bold;
+    font-size:18px;
+    color:white;
+    width:49%;
+}
+
+input[type=submit] {
+    background-color:#123456;
+    border:1px solid white;
+    font-family: 'Fauna One', serif;
+    font-Weight:bold;
+    font-size:18px;
+    color:white;
+    width:49%;
+}
+
+textarea{
+    width:100%;
+    height:80px;
+    margin-top:5px;
+    border-radius:3px;
+    padding:5px;
+    resize:none;
+}
+
+#addTripDiv{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    background: #000;
+    background-size: 100%;
+    display: none;
+}
+
+#addTripForm{
+    width:350px;
+    margin:0px;
+    background-color:white;
+    font-family: 'Fauna One', serif;
+    position: relative;
+    border: 5px solid rgb(90, 158, 181);
+    left: 50%;
+    top: 35%;
+    margin-left:-210px;
+    margin-top:-255px;
+}
+
+.wrapper {
+    text-align: center;
+    margin-top: 25%;
+}
+
+
+#addTrip {
+    font-family: 'Roboto';
+    font-size: 1.4em;
+    color: white;
+    background: none;
+    /*background-color: saddlebrown;*/
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 8px;
+    /*padding: 0;*/
+    width: 120px;
+    /*height: 80px;*/
+}

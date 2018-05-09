@@ -53,7 +53,7 @@ $(document).ready(function () {
             }else {
                 $.ajax({
                     type: "PATCH",
-                    url: "http://localhost:7070/updateProfile?id=" + userId,
+                    url: "/updateProfile?id=" + userId,
                     // The key needs to match your method's input parameter (case-sensitive).
                     data: JSON.stringify(userDetails),
                     contentType: "application/json; charset=utf-8",

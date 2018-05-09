@@ -3,10 +3,12 @@ package ro.siit.mytripsapp.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;
+import ro.siit.mytripsapp.controller.validator.JsonResponse;
 import ro.siit.mytripsapp.entity.Trip;
 import ro.siit.mytripsapp.model.TripModel;
 import ro.siit.mytripsapp.repository.TripRepository;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
@@ -63,7 +65,14 @@ public class TripController {
     }
 
     @GetMapping("/getTrips/{id}")
-    public List<String> getTripById(@PathVariable(value = "id") Long userId) {
+    public List<String> getTripById(@PathVariable(value = "id") Long userId, HttpServletResponse response) {
+
+        int count = jdbcTemplate.queryForObject("SELECT COUNT(trip_name) from mytripapp.trip WHERE user_id=?", Integer.class, userId);
+
+//        if (count == 0) {
+//            response.setStatus( HttpServletResponse.SC_BAD_REQUEST);
+//        }
+
         List<TripModel> trips = new ArrayList<>();
         trips.addAll(tripRepository.findAllByUserId(userId).stream().map(TripController::mapToModel).collect(Collectors.toList()));
 
@@ -72,6 +81,7 @@ public class TripController {
             tripNames.add(t.getTripName());
         }
         return tripNames;
+
     }
 
     @PatchMapping("/updateTrip")

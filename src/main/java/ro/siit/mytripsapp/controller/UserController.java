@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -16,10 +17,14 @@ import ro.siit.mytripsapp.entity.user.UserCreateForm;
 import ro.siit.mytripsapp.service.user.UserService;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.NoSuchElementException;
 
 @Controller
 public class UserController {
+
+    @Autowired
+    JdbcTemplate jdbcTemplate;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
     private final UserService userService;
@@ -39,9 +44,15 @@ public class UserController {
     @PreAuthorize("@currentUserServiceImpl.canAccessUser(principal, #id)")
     @RequestMapping("/")
     public ModelAndView getHomeUserPage(CurrentUser currentUser) {
-        LOGGER.debug("Getting user page for user={}", currentUser.getId());
-        return new ModelAndView("user", "user", userService.getUserById(currentUser.getId())
+        int count = jdbcTemplate.queryForObject("SELECT COUNT(trip_name) from mytripapp.trip WHERE user_id=?", Integer.class, currentUser.getId());
+        if (count > 0) {
+            LOGGER.debug("Getting user page for user={}", currentUser.getId());
+            return new ModelAndView("user", "user", userService.getUserById(currentUser.getId())
+                    .orElseThrow(() -> new NoSuchElementException(String.format("User=%s not found", currentUser.getId()))));
+        }
+        return new ModelAndView("welcome", "user", userService.getUserById(currentUser.getId())
                 .orElseThrow(() -> new NoSuchElementException(String.format("User=%s not found", currentUser.getId()))));
+
     }
 
     @PreAuthorize("@currentUserServiceImpl.canAccessUser(principal, #id)")

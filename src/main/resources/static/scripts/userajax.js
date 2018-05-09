@@ -8,9 +8,28 @@ $(document).ready(function () {
         type: "get",
         url: "/getTrips/" + userId,
         success: function (tripNames) {
-            $.each(tripNames, function (val, text) {
-                $('#tripSelect').append($('<option></option>').val(val).html(text))
-            });
+            if (tripNames.length > 0) {
+                $.each(tripNames, function (val, text) {
+                    $('#tripSelect').append($('<option></option>').val(val).html(text))
+                });
+            } else {
+                // $("#impressionsText").hide();
+                // $("#datesText").hide();
+                // $(".googleMap").hide();
+                // $("#tripImpressionsLabel").hide();
+                // $("#tripSelectLabel").hide();
+                //
+                // $('#tripSelect').append($('<option>', {
+                //     value: 1,
+                //     text: 'Please add a trip'
+                // }));
+                // $("#tripOperationsRow").addClass("noTripsMargin");
+                // $('#addPhoto').prop('disabled', true);
+                // $('#editTrip').prop('disabled', true);
+                // $('#deleteTrip').prop('disabled', true);
+
+            }
+
 
 
             populatePageFirstPart(encodeURIComponent($("#tripSelect :selected").text().trim()));
@@ -20,9 +39,6 @@ $(document).ready(function () {
             $("#impressionsText").text("Error loading impressions");
             $("#datesText").text("Error loading dates");
 
-            $("#impressionsText").hide();
-            $("#datesText").hide();
-            $(".googleMap").hide();
         }
     });
 
